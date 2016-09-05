@@ -118,7 +118,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/app_depart_gray">
+        android:background="@color/colorWhite">
     </LinearLayout>
 
     <LinearLayout
@@ -162,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/app_depart_gray">
+            android:background="@color/colorWhite">
         </LinearLayout>
 
         <!--账户设置-->
@@ -202,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/app_depart_gray">
+            android:background="@color/colorWhite">
         </LinearLayout>
 
         <!--帮助中心-->
@@ -242,7 +242,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/app_depart_gray">
+            android:background="@color/colorWhite">
         </LinearLayout>
 
         <!--管理地址-->
@@ -282,7 +282,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/app_depart_gray">
+            android:background="@color/colorWhite">
         </LinearLayout>
 
     </LinearLayout>
