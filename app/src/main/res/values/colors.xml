@@ -6,4 +6,7 @@
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#fff</color>
     <color name="colorYellow">#ffbb00</color>
+
+
+    <color name="app_depart_gray">#c9c9c9</color>
 </resources>
