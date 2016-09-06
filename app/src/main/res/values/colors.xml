@@ -8,5 +8,10 @@
     <color name="colorYellow">#ffbb00</color>
 
 
+    <!--分隔线颜色-->
     <color name="app_depart_gray">#c9c9c9</color>
+    <!--hint颜色-->
+    <color name="hint_color">#7f7f7f</color>
+    <!--登录界面白字-->
+    <color name="login_white">#d7d6d6</color>
 </resources>
