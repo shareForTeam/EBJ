@@ -1,16 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="share.com.ebj.MainActivity">
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/index_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
+                <RadioGroup
+                    android:id="@+id/index_navigation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="170dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:background="@drawable/dot_normal"
+                        android:layout_width="18dp"
+                        android:layout_height="5dp"
+                        android:layout_margin="1.5dp"
+                        android:enabled="false"
+                        android:button="@null"
+                        />
+
+                    <RadioButton
+                        android:background="@drawable/dot_normal"
+                        android:layout_width="18dp"
+                        android:layout_height="5dp"
+                        android:layout_margin="1.5dp"
+                        android:enabled="false"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:background="@drawable/dot_normal"
+                        android:layout_width="18dp"
+                        android:layout_height="5dp"
+                        android:layout_margin="1.5dp"
+                        android:enabled="false"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:background="@drawable/dot_normal"
+                        android:layout_width="18dp"
+                        android:layout_height="5dp"
+                        android:layout_margin="1.5dp"
+                        android:enabled="false"
+                        android:button="@null" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/index_first"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/clothes_04"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/index_second"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/pants_08"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/index_third"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/shoe_11"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/index_fourth"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/acc_16"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    <ImageView
+        android:id="@+id/index_menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/menu" />
+
+</FrameLayout>
