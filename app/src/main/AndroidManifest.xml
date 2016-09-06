@@ -18,6 +18,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MySelfCenterActivity"></activity>
+
+        <activity android:name=".GouWuChe">
+
+        </activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".PersonSettingActivity"></activity>
+        <activity android:name=".PayClickActivity"></activity>
     </application>
 
 </manifest>

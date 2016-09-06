@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#12110f"
+        android:orientation="horizontal">
+        <!--返回键-->
+        <ImageView
+            android:id="@+id/pay_click_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/gouwuche_back" />
+
+        <!--购物车标题-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="E 支 付"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/line1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/adress"/>
+
+
+    </LinearLayout>
+
+    <!--分割线-->
+    <LinearLayout
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linear1"
+        android:background="#d8d8d8"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <LinearLayout
+    android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/divider1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/lianxiren"/>
+    </LinearLayout>
+    <!--分割线-->
+    <LinearLayout
+        android:id="@+id/divider2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d8d8d8"
+        android:layout_below="@id/linear2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_below="@+id/divider2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/phone"/>
+    </LinearLayout>
+    <!--分割线-->
+    <LinearLayout
+        android:id="@+id/divider3"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d8d8d8"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <RelativeLayout
+        android:id="@+id/linear4"
+        android:layout_below="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pay_text"
+            android:layout_marginLeft="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"/>
+       
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/linear5"
+        android:layout_below="@+id/linear4"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@mipmap/pay_way"
+        android:layout_width="match_parent"
+        android:layout_height="165dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+            <RadioButton
+                android:id="@+id/pay_weixin_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/shopping_car_chekbox"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                android:layout_marginLeft="15dp"
+              />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/pay_weixin_button"
+                android:src="@mipmap/pay_weixin"/>
+        </RelativeLayout>
+        <!--分割线-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+           >
+            <RadioButton
+                android:id="@+id/pay_yinlian_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/shopping_car_chekbox"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/pay_yinlian_button"
+                android:src="@mipmap/pay_yinlian"/>
+
+
+        </RelativeLayout>
+        <!--分割线-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+            <RadioButton
+                android:id="@+id/pay_zhifubao_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/shopping_car_chekbox"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/pay_zhifubao_button"
+                android:src="@mipmap/pay_zhifubao"/>
+        </RelativeLayout>
+        <!--分割线-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+           >
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:text="更多支付方式"/>
+        </LinearLayout>
+
+
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_below="@id/linear5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/pay_tatal"
+            android:layout_centerVertical="true"
+            android:text="合计："/>
+        <TextView
+            android:id="@+id/pay_tatal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textColor="#ff6f06"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="18sp"
+            android:text="￥299元"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorYellow"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorYellow"
+            android:text="确 认 支 付"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/pay_click_button" />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
