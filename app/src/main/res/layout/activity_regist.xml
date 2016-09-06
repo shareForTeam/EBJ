@@ -52,6 +52,9 @@
                     android:hint="请输入你的手机号"
                     android:maxLines="1"
                     android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="@color/login_white"
+                    android:textCursorDrawable="@null"
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/hint_textsize" />
             </LinearLayout>
@@ -104,6 +107,9 @@
                     android:layout_weight="390"
                     android:layout_height="match_parent"
                     android:hint="请输入你的密码"
+                    android:singleLine="true"
+                    android:textColor="@color/login_white"
+                    android:textCursorDrawable="@null"
                     android:inputType="textPassword"
                     android:background="@null"
                     android:maxLines="1"

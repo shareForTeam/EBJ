@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         resideMenu.attachToActivity(this);
         resideMenu.setScaleValue(0.6f);
         mine = new ResideMenuItem(this, R.mipmap.person, "个人中心");
-        store = new ResideMenuItem(this, R.mipmap.store, "商城");
+        store = new ResideMenuItem(this, R.mipmap.store, "进入商城");
         /**添加菜单选项*/
         resideMenu.addMenuItem(mine, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(store, ResideMenu.DIRECTION_LEFT);
@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         public void run() {
             super.run();
             while (true) {
-                handler.sendEmptyMessage(0);
                 try {
                     sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                handler.sendEmptyMessage(0);
             }
         }
     }

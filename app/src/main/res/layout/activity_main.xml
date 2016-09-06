@@ -29,9 +29,11 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="170dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:checkedButton="@+id/id_main_first_radiobtn">
 
                     <RadioButton
+                        android:id="@+id/id_main_first_radiobtn"
                         android:background="@drawable/dot_normal"
                         android:layout_width="18dp"
                         android:layout_height="5dp"
@@ -74,37 +76,37 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/clothes_04"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/index_second"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/pants_08"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/index_third"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/shoe_11"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/index_fourth"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/acc_16"/>
             <ImageView
                 android:layout_width="match_parent"
