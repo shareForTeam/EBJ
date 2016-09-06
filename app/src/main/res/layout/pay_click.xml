@@ -12,7 +12,7 @@
         android:orientation="horizontal">
         <!--返回键-->
         <ImageView
-            android:id="@+id/person_setting_back_img"
+            android:id="@+id/pay_click_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -266,6 +266,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         >
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

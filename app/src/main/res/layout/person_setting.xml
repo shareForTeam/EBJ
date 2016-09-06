@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/person_setting_back_img"
+            android:id="@+id/person_setting_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -85,6 +85,7 @@
 
 
         <LinearLayout
+            android:id="@+id/nicheng_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
@@ -93,7 +94,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/back2" />
+                android:src="@mipmap/back2"
+                android:clickable="false"/>
         </LinearLayout>
 
 
@@ -116,13 +118,16 @@
             android:text="性别" />
 
         <LinearLayout
+            android:id="@+id/sex_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:clickable="true"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:clickable="false"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/back2" />
         </LinearLayout>
@@ -147,14 +152,17 @@
             android:text="个性签名" />
 
         <LinearLayout
+            android:id="@+id/gexingqianming_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:clickable="true"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:src="@mipmap/back2" />
         </LinearLayout>
 
@@ -177,14 +185,17 @@
             android:text="更换背景" />
 
         <LinearLayout
+            android:id="@+id/changebg_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:clickable="true"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:src="@mipmap/back2" />
         </LinearLayout>
 
@@ -207,14 +218,17 @@
             android:text="我的二维码" />
 
         <LinearLayout
+            android:id="@+id/erweima_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
+            android:clickable="true"
             android:layout_alignParentRight="true"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:src="@mipmap/back2" />
         </LinearLayout>
 
@@ -237,14 +251,17 @@
             android:text="更改账户密码" />
 
         <LinearLayout
+            android:id="@+id/change_passward_button"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:clickable="true"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:src="@mipmap/back2" />
         </LinearLayout>
     </RelativeLayout>
