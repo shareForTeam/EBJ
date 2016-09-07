@@ -4,15 +4,18 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".init.InitActivity"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".LeaderActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +27,15 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".PersonSettingActivity"></activity>
         <activity android:name=".PayClickActivity"></activity>
+        <activity android:name=".Activity.SplashActivity"></activity>
+        <activity android:name=".Activity.LeaderActivity"></activity>
+        <activity android:name=".Activity.MySelfCenterActivity"></activity>
+        <activity android:name=".Activity.GouWuChe"></activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.PersonSettingActivity"></activity>
+        <activity android:name=".Activity.PayClickActivity"></activity>
+        <activity android:name=".Activity.RegistActivity"></activity>
+        <activity android:name=".Activity.SortActivity"></activity>
     </application>
 
 

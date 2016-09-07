@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import share.com.ebj.Activity.GouWuChe;
+import share.com.ebj.R;
+
 /**
  * Created by Administrator on 2016/8/30.
  */
@@ -19,7 +22,7 @@ import android.widget.TextView;
  */
 public class GouWuCheListViewAdapter extends BaseAdapter  {
 
-   private  GouWuChe context;// 传入的参数
+   private GouWuChe context;// 传入的参数
     private LayoutInflater inflater;//可以将Layout文件变为View
 
     //构造函数

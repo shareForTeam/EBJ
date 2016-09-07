@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,11 @@ import android.widget.Toast;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
+import share.com.ebj.R;
 import share.com.ebj.adapter.Index_Viewpager_adapter;
 
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private ResideMenu resideMenu;
     private ImageView im_menu;
     private ResideMenuItem mine, store;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private ImageView[] imageView;
     private RadioGroup radioGroup;
     private int icon[] = {R.mipmap.index_lunbo, R.mipmap.index_lunbo, R.mipmap.index_lunbo, R.mipmap.index_lunbo};
+    /**四大分类*/
+    private ImageView iv_sort_1,iv_sort_2,iv_sort_3,iv_sort_4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         resideMenu.attachToActivity(this);
         resideMenu.setScaleValue(0.6f);
         mine = new ResideMenuItem(this, R.mipmap.person, "个人中心");
-        store = new ResideMenuItem(this, R.mipmap.store, "商城");
+        store = new ResideMenuItem(this, R.mipmap.store, "进入商城");
         /**添加菜单选项*/
         resideMenu.addMenuItem(mine, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(store, ResideMenu.DIRECTION_LEFT);
@@ -71,6 +74,26 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 Toast.makeText(MainActivity.this, "进入商城", Toast.LENGTH_LONG).show();
             }
         });
+
+        /**黄垲程逻辑*/
+        initView();
+        initListener();
+    }
+
+    /**initView*/
+    public void initView(){
+        iv_sort_1 = (ImageView) findViewById(R.id.id_main_one_cloes);
+        iv_sort_2 = (ImageView) findViewById(R.id.id_main_two_pants);
+        iv_sort_3 = (ImageView) findViewById(R.id.id_main_three_shoes);
+        iv_sort_4 = (ImageView) findViewById(R.id.id_main_four_acc);
+    }
+
+    /**inintListener*/
+    public void initListener(){
+        iv_sort_1.setOnClickListener(this);
+        iv_sort_2.setOnClickListener(this);
+        iv_sort_3.setOnClickListener(this);
+        iv_sort_4.setOnClickListener(this);
     }
 
     public void viewPagerMethod() {
@@ -117,17 +140,43 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.id_main_one_cloes:
+                Intent intent1 = new Intent(this,SortActivity.class);
+                intent1.putExtra("product_id",1);
+                startActivity(intent1);
+                break;
+            case R.id.id_main_two_pants:
+                Intent intent2 = new Intent(this,SortActivity.class);
+                intent2.putExtra("product_id",2);
+                startActivity(intent2);
+                break;
+            case R.id.id_main_three_shoes:
+                Intent intent3 = new Intent(this,SortActivity.class);
+                intent3.putExtra("product_id",3);
+                startActivity(intent3);
+                break;
+            case R.id.id_main_four_acc:
+                Intent intent4 = new Intent(this,SortActivity.class);
+                intent4.putExtra("product_id",4);
+                startActivity(intent4);
+                break;
+        }
+    }
+
     class ViewPagerThread extends Thread {
         @Override
         public void run() {
             super.run();
             while (true) {
-                handler.sendEmptyMessage(0);
                 try {
                     sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                handler.sendEmptyMessage(0);
             }
         }
     }

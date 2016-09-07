@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import share.com.ebj.MainActivity;
+import share.com.ebj.Activity.MainActivity;
 import share.com.ebj.R;
 
 /**

@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+
+import share.com.ebj.R;
 
 public class SplashActivity extends AppCompatActivity {
     private ImageView imageView;
