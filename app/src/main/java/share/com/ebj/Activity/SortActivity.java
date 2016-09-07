@@ -1,14 +1,12 @@
 package share.com.ebj.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -18,18 +16,17 @@ import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import share.com.ebj.jsonStr.SortJson;
 import share.com.ebj.R;
-import share.com.ebj.Utils.IconStr_To_List;
 import share.com.ebj.adapter.SortViewPagerAdapter;
+import share.com.ebj.jsonStr.SortJson;
 import share.com.ebj.leadFragment.Sort_Fragment_ACC;
 import share.com.ebj.leadFragment.Sort_Fragment_clothes;
 import share.com.ebj.leadFragment.Sort_Fragment_shoes;
 import share.com.ebj.leadFragment.Sort_Fragment_skirt;
 
-public class SortActivity extends FragmentActivity {
+public class SortActivity extends AppCompatActivity {
     private ArrayList<Fragment> fragmentsList = new ArrayList<>();
     private FragmentManager fragmentManager;
     private String TAG = "crazyK";
@@ -74,8 +71,6 @@ public class SortActivity extends FragmentActivity {
         if(product_id == -1){
             return;
         }
-     */
-    public void getSortInfo(int product_id) {
         RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_sort.do");
         requestParams.addParameter("type", "android");
         requestParams.addParameter("query", "sort");

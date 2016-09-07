@@ -14,4 +14,10 @@
     <color name="hint_color">#7f7f7f</color>
     <!--登录界面白字-->
     <color name="login_white">#d7d6d6</color>
+    <!--商品分类界面 商品名字颜色-->
+    <color name="sort_goods_name">#454543</color>
+    <!--商品分类界面背景色-->
+    <color name="sort_background">#d6d6d6</color>
+    <!--商品分类界面 商品价格颜色-->
+    <color name="sort_goods_prize">#fa1200</color>
 </resources>
