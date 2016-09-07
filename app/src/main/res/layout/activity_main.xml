@@ -74,6 +74,7 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/index_first"/>
             <ImageView
+                android:id="@+id/id_main_one_cloes"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
@@ -84,6 +85,7 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/index_second"/>
             <ImageView
+                android:id="@+id/id_main_two_pants"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
@@ -94,6 +96,7 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/index_third"/>
             <ImageView
+                android:id="@+id/id_main_three_shoes"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:scaleType="fitXY"
@@ -104,6 +107,7 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/index_fourth"/>
             <ImageView
+                android:id="@+id/id_main_four_acc"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"

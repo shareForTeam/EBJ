@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import share.com.ebj.R;
 
 /**
  * Created by Administrator on 2016/9/5.

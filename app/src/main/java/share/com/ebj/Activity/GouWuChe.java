@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import share.com.ebj.R;
+import share.com.ebj.adapter.GouWuCheListViewAdapter;
 
 /**
  * Created by Administrator on 2016/8/27.

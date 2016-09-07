@@ -1,4 +1,4 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import share.com.ebj.R;
 import share.com.ebj.leadFragment.One;
 import share.com.ebj.leadFragment.Three;
 import share.com.ebj.leadFragment.Two;
