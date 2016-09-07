@@ -1,11 +1,11 @@
 package share.com.ebj.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -180,5 +180,33 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             }
         }
     }
+
+//
+//        String url = "http://172.18.4.18:8080/EBJ_Project/db.do";
+//        RequestParams params = new RequestParams();
+//        params.addQueryStringParameter("type", "android");
+//        HttpUtils http = new HttpUtils();
+//        http.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+//            @Override
+//            public void onSuccess(ResponseInfo<String> responseInfo) {
+//                if(responseInfo.statusCode == 200){
+//
+//                }
+//                Log.e("result-----", responseInfo.result);
+//            }
+//
+//            @Override
+//            public void onFailure(HttpException error, String msg) {
+//
+//            }
+//
+//            @Override
+//            public void onLoading(long total, long current, boolean isUploading) {
+//                super.onLoading(total, current, isUploading);
+//            }
+//
+//        });
+//    }
+
 
 }
