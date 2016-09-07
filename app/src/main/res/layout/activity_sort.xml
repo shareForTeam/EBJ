@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="share.com.ebj.Activity.SortActivity">
+    android:orientation="vertical"
+    tools:context="share.com.ebj.Activity.SortActivity"
+    >
 
     <RelativeLayout
         android:id="@+id/line1"
@@ -31,19 +33,19 @@
             android:textColor="@color/colorWhite"
             android:textSize="18sp" />
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/line1"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+      >
 
         <android.support.design.widget.TabLayout
             android:id="@+id/activity_sort_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabIndicatorColor="@android:color/black"
+            app:tabSelectedTextColor="@color/colorPrimary"
             app:tabMode="fixed" />
 
         <android.support.v4.view.ViewPager
@@ -51,8 +53,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
     </LinearLayout>
 
+    <RadioGroup
+        android:id="@+id/sort_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:background="#12110f"
+       >
+        <RadioButton
+            android:id="@+id/sort_rb1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/home_change_color"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/sort_rb2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/sort_change_color"
+            android:layout_weight="1"/>
 
-</RelativeLayout>
+        <RadioButton
+            android:id="@+id/sort_rb3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/shopping_car_change_color"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/sort_rb4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/person_change_color"
+            android:layout_weight="1"/>
+
+
+
+    </RadioGroup>
+
+
+</LinearLayout>

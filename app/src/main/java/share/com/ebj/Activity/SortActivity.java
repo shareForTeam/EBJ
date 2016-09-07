@@ -3,10 +3,9 @@ package share.com.ebj.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import org.xutils.common.Callback;
@@ -23,7 +22,7 @@ import share.com.ebj.leadFragment.Sort_Fragment_clothes;
 import share.com.ebj.leadFragment.Sort_Fragment_shoes;
 import share.com.ebj.leadFragment.Sort_Fragment_skirt;
 
-public class SortActivity extends FragmentActivity {
+public class SortActivity extends AppCompatActivity {
     private ArrayList<Fragment> fragmentsList = new ArrayList<>();
     private FragmentManager fragmentManager;
     private String TAG = "crazyK";
