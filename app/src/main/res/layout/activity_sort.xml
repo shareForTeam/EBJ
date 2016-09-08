@@ -5,100 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="share.com.ebj.Activity.SortActivity"
-    android:background="@color/sort_background">
+    tools:context="share.com.ebj.Activity.SortActivity">
 
-    <RelativeLayout
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#12110f"
-        android:orientation="horizontal">
-        <!--返回键-->
-        <ImageView
-            android:id="@+id/pay_click_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:src="@mipmap/gouwuche_back" />
-
-        <!--购物车标题-->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="商 品 分 类"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
-    </RelativeLayout>
-    <LinearLayout
+    <share.com.ebj.adapter.MyViewPager
+        android:id="@+id/main_Layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:layout_weight="1"
-      >
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/activity_sort_tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@android:color/black"
-            app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabMode="fixed" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/activity_sort_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+        android:orientation="vertical"/>
 
     <RadioGroup
         android:id="@+id/sort_radio_group"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="bottom"
-        android:orientation="horizontal"
         android:background="#12110f"
-       >
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
         <RadioButton
             android:id="@+id/sort_rb1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:checked="true"
+            android:layout_weight="1"
             android:button="@null"
-            android:paddingTop="10dp"
+
             android:drawableTop="@drawable/home_change_color"
-            android:layout_weight="1"/>
+            android:paddingTop="10dp" />
+
         <RadioButton
             android:id="@+id/sort_rb2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
-            android:paddingTop="10dp"
+            android:checked="true"
             android:drawableTop="@drawable/sort_change_color"
-            android:layout_weight="1"/>
+            android:paddingTop="10dp" />
 
         <RadioButton
             android:id="@+id/sort_rb3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
-            android:paddingTop="10dp"
             android:drawableTop="@drawable/shopping_car_change_color"
-            android:layout_weight="1"/>
+            android:paddingTop="10dp" />
 
         <RadioButton
             android:id="@+id/sort_rb4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
-            android:paddingTop="10dp"
             android:drawableTop="@drawable/person_change_color"
-            android:layout_weight="1"/>
-
+            android:paddingTop="10dp" />
 
 
     </RadioGroup>

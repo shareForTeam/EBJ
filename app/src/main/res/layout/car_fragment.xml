@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#12110f">
+        <!--返回键-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="80">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/gouwuche_back"
+                android:id="@+id/gouwuche_back_img" />
+        </LinearLayout>
+        <!--购物车标题-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="560"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="购 物 车"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
+
+        <!--标题右边 待定-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80">
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/gouwuche_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line1"
+        android:dividerHeight="1dp"
+        android:layout_above="@+id/linearLayout2">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorYellow"
+            android:text="支          付"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/gouwucge_pay_button" />
+    </LinearLayout>
+
+    <!--全选的LinearLayout布局权重-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_above="@+id/linearLayout"
+        android:id="@+id/linearLayout2">
+
+        <!--CheckBox布局-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/check_button"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:button="@drawable/shopping_car_chekbox"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
+        <!--全选布局-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全 选 "
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+        <!--中间空白-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="420">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="合计:"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+        <!--全部价格布局-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="140"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:text="￥299元"
+                android:textColor="#ff6f06"
+                android:textSize="16sp"
+                android:id="@+id/textView" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

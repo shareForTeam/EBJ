@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
    >
 
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
     <RadioGroup
         android:id="@+id/lead_radiogroup"
         android:layout_width="wrap_content"
@@ -38,9 +46,4 @@
             android:button="@null"
             android:background="@drawable/dot_normal_1"/>
     </RadioGroup>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 </FrameLayout>
