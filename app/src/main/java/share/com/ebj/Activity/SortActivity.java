@@ -2,6 +2,8 @@ package share.com.ebj.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +27,7 @@ import share.com.ebj.leadFragment.Sort_Fragment_ACC;
 import share.com.ebj.leadFragment.Sort_Fragment_clothes;
 import share.com.ebj.leadFragment.Sort_Fragment_shoes;
 import share.com.ebj.leadFragment.Sort_Fragment_skirt;
+import share.com.ebj.recycleview.RecycleView_Adapter;
 
 public class SortActivity extends AppCompatActivity {
     private ArrayList<Fragment> fragmentsList = new ArrayList<>();
@@ -38,7 +41,6 @@ public class SortActivity extends AppCompatActivity {
     private Sort_Fragment_ACC fragment_ACC;//配饰
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,9 @@ public class SortActivity extends AppCompatActivity {
         SortViewPagerAdapter adapter = new SortViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);//设置适配器
         /**接收mainActivity传过来的product_id*/
-        Intent intent = getIntent();
-        int product_id = intent.getIntExtra("product_id", -1);
-        getSortInfo(product_id);
+//        Intent intent = getIntent();
+//        int product_id = intent.getIntExtra("product_id", -1);
+//        getSortInfo(product_id);
 
 
 
@@ -81,8 +83,7 @@ public class SortActivity extends AppCompatActivity {
 //                Log.i(TAG, "onSuccess: "+result);
                 Gson gson = new Gson();
                 SortJson sortJson = gson.fromJson(result, SortJson.class);
-
-                Log.i(TAG, "onSuccess: " + result);
+                new RecycleView_Adapter(SortActivity.this).onGetSortJsonListener(sortJson);
             }
 
             /**isOnCallback :true:本地onSuceess中逻辑错误
