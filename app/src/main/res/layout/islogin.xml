@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -285,5 +287,53 @@
                 android:background="#d8d8d8" />
         </LinearLayout>
     </ScrollView>
+    <RadioGroup
+        android:id="@+id/islogin_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:background="#12110f"
+        >
+        <RadioButton
+            android:id="@+id/islogin_rb1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/home_change_color"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/sort_rb2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/sort_change_color"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/islogin_rb3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/shopping_car_change_color"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/islogin_rb4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/person_change_color"
+            android:layout_weight="1"/>
+
+
+
+    </RadioGroup>
+
 
 </LinearLayout>

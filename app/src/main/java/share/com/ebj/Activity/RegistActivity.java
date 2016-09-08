@@ -1,7 +1,9 @@
-package share.com.ebj;
+package share.com.ebj.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import share.com.ebj.R;
 
 public class RegistActivity extends AppCompatActivity {
 
