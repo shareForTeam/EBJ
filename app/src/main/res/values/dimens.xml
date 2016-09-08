@@ -6,7 +6,7 @@
     <!--hint Size-->
     <dimen name="hint_textsize">10sp</dimen>
     <!--商品分类界面 商品名字-->
-    <dimen name="sort_goods_name">12sp</dimen>
-    <!--商品分类界面 商品加强-->
+    <dimen name="sort_goods_name">11sp</dimen>
+    <!--商品分类界面 商品价钱-->
     <dimen name="sort_goods_prize">11sp</dimen>
 </resources>

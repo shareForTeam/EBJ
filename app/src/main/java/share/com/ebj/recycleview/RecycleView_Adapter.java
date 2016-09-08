@@ -18,24 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import share.com.ebj.R;
-import share.com.ebj.Utils.IconStr_To_List;
-import share.com.ebj.jsonStr.SortJson;
-import share.com.ebj.listener.OnGetSortJsonListener;
 
 /**
  * Created by Administrator on 2016/9/7.
  */
-public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapter.MyViewHolder> implements OnGetSortJsonListener {
+public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapter.MyViewHolder>  {
     private Context context;
     private List<String> iconStr_List = new ArrayList<>();
+    private List<String> nameStr_List = new ArrayList<>();
+    private List<String> prizeStr_List = new ArrayList<>();
+
 
     public RecycleView_Adapter(Context context){
         this.context = context;
     }
 
 
-    public void setIconStr_List(List<String> iconStr_List) {
+    public void setIconStr_List(List<String> iconStr_List, List<String> nameStr_List ,List<String> prizeStr_List ) {
         this.iconStr_List = iconStr_List;
+        this.nameStr_List = nameStr_List;
+        this.prizeStr_List = prizeStr_List;
         notifyDataSetChanged();
     }
 
@@ -48,25 +50,14 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.iv_item.setImageResource(R.mipmap.close);
         ImageLoader.getInstance().displayImage(iconStr_List.get(position),holder.iv_item);
+        holder.tv_name.setText(nameStr_List.get(position));
+        holder.tv_prize.setText(prizeStr_List.get(position));
     }
 
     @Override
     public int getItemCount() {
         return iconStr_List.size();
-    }
-
-    @Override
-    public void onGetSortJsonListener(SortJson sortJson) {
-        for(int i = 0 ; i < sortJson.getList().size() ; i++){
-            String goods_icon_Str = sortJson.getList().get(i).getGoods_icon();
-            IconStr_To_List iconStr_to_list = new IconStr_To_List();
-            List<String> iconList = iconStr_to_list.getIconList(goods_icon_Str);
-            String first_icon = iconList.get(0);
-            iconStr_List.add(first_icon);
-//            no
-        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

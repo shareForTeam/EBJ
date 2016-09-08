@@ -1,5 +1,6 @@
 package share.com.ebj.leadFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -32,10 +33,24 @@ public class SortFragment extends Fragment{
          viewPager = (ViewPager) view.findViewById(R.id.activity_sort_viewpager);
          tabLayout = (TabLayout) view.findViewById(R.id.activity_sort_tablayout);
          tabLayout.setupWithViewPager(viewPager);//把TabLayout和ViewPager关联起来
+
+
+
         fragmentManager = getActivity().getSupportFragmentManager();//获取Fragment管理者
         SortViewPagerAdapter adapter = new SortViewPagerAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);//设置适配器
-
+        whichSelect();
         return view;
+    }
+
+    public void whichSelect(){
+        Intent intent = getActivity().getIntent();
+        int index_sortFragment = intent.getIntExtra("index_sortFragment",-1);
+        if(index_sortFragment == -1){
+            return;
+        }else {
+            viewPager.setCurrentItem(index_sortFragment,true);
+
+        }
     }
 }

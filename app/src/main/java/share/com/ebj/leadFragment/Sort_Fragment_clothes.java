@@ -33,7 +33,9 @@ public class Sort_Fragment_clothes extends Fragment{
     private RecyclerView rv_clothes;
     private RecycleView_Adapter adapter;
     private Activity activity;
-    private List<String> picUrls;
+    private List<String> iconStr_List;
+    private List<String> nameStr_List;
+    private List<String> prizeStr_List;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +44,10 @@ public class Sort_Fragment_clothes extends Fragment{
         rv_clothes = (RecyclerView) view.findViewById(R.id.id_fragment_clothes_rv);
         rv_clothes.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
-        picUrls = new ArrayList<>();
+        iconStr_List = new ArrayList<>();
+        nameStr_List = new ArrayList<>();
+        prizeStr_List = new ArrayList<>();
+
         adapter = new RecycleView_Adapter(activity);
 
         rv_clothes.setAdapter(adapter);
@@ -75,12 +80,18 @@ public class Sort_Fragment_clothes extends Fragment{
                 SortJson sortJson = gson.fromJson(result, SortJson.class);
                 for(int i = 0 ; i < sortJson.getList().size() ; i++){
                     String goods_icon_Str = sortJson.getList().get(i).getGoods_icon();
+                    String goods_name = sortJson.getList().get(i).getGoods_name();
+                    String goods_price = sortJson.getList().get(i).getGoods_price();
+
+                    nameStr_List.add(goods_name);
+                    prizeStr_List.add(goods_price);
+
                     IconStr_To_List iconStr_to_list = new IconStr_To_List();
                     List<String> iconList = iconStr_to_list.getIconList(goods_icon_Str);
                     String first_icon = iconList.get(0);
-                    picUrls.add(first_icon);
+                    iconStr_List.add(first_icon);
                 }
-                adapter.setIconStr_List(picUrls);
+                adapter.setIconStr_List(iconStr_List,nameStr_List,prizeStr_List);
             }
 
             /**isOnCallback :true:本地onSuceess中逻辑错误

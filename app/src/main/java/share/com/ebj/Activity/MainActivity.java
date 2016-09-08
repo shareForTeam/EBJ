@@ -146,21 +146,25 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             case R.id.id_main_one_cloes:
                 Intent intent1 = new Intent(this,SortActivity.class);
                 intent1.putExtra("product_id",1);
+                intent1.putExtra("index_sortFragment",0);
                 startActivity(intent1);
                 break;
             case R.id.id_main_two_pants:
                 Intent intent2 = new Intent(this,SortActivity.class);
                 intent2.putExtra("product_id",2);
+                intent2.putExtra("index_sortFragment",1);
                 startActivity(intent2);
                 break;
             case R.id.id_main_three_shoes:
                 Intent intent3 = new Intent(this,SortActivity.class);
                 intent3.putExtra("product_id",3);
+                intent3.putExtra("index_sortFragment",2);
                 startActivity(intent3);
                 break;
             case R.id.id_main_four_acc:
                 Intent intent4 = new Intent(this,SortActivity.class);
                 intent4.putExtra("product_id",4);
+                intent4.putExtra("index_sortFragment",3);
                 startActivity(intent4);
                 break;
         }
