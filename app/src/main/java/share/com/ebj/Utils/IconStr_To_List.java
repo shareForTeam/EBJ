@@ -4,6 +4,8 @@ package share.com.ebj.Utils;
  * Created by Administrator on 2016/9/7.
  */
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class IconStr_To_List {
         ArrayList<String> iconList = new ArrayList<>();
         for (int i = 0; i < splitIconStr.length; i++) {
             iconList.add(splitIconStr[i]);
+            Log.i(TAG, "getIconList: "+splitIconStr[i]+"\t");
         }
         return iconList;
 

@@ -17,7 +17,11 @@
     <!--商品分类界面 商品名字颜色-->
     <color name="sort_goods_name">#454543</color>
     <!--商品分类界面背景色-->
-    <color name="sort_background">#d6d6d6</color>
+    <color name="sort_background">#dfdfdf</color>
     <!--商品分类界面 商品价格颜色-->
     <color name="sort_goods_prize">#fa1200</color>
+    <!--商品详情界面信息背景色-->
+    <color name="product_info_background">#dfdfdf</color>
+    <!--商品详情 信息文字颜色-->
+    <color name="product_info_text">#6d6d6d</color>
 </resources>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import share.com.ebj.Activity.ProductActivity;
 import share.com.ebj.R;
 import share.com.ebj.Utils.IconStr_To_List;
 import share.com.ebj.jsonStr.SortJson;
@@ -119,7 +119,9 @@ public class Sort_Fragment_skirt extends Fragment implements RecycleView_Adapter
     @Override
     public void onRVItemClick(View view, int position) {
         int goods_id = sortJson.getList().get(position).getGoods_id();
-        Intent intent = new Intent()
+        Intent intent = new Intent(getActivity(), ProductActivity.class);
+        intent.putExtra("goods_id",goods_id);
+        startActivity(intent);
 //        String name = nameStr_List.get(position);
 //        String prize = prizeStr_List.get(position);
 //        Log.i(TAG, "名字: "+name+"\t"+"价钱："+prize);

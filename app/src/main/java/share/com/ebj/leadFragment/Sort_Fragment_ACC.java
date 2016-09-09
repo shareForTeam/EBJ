@@ -1,6 +1,7 @@
 package share.com.ebj.leadFragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import share.com.ebj.Activity.ProductActivity;
 import share.com.ebj.R;
 import share.com.ebj.Utils.IconStr_To_List;
 import share.com.ebj.jsonStr.SortJson;
@@ -28,13 +30,14 @@ import share.com.ebj.recycleview.RecycleView_Adapter;
  * Created by Administrator on 2016/9/7.
  */
 
-public class Sort_Fragment_ACC extends Fragment{
+public class Sort_Fragment_ACC extends Fragment implements RecycleView_Adapter.OnRVItemClickListener{
     private RecyclerView rv_acc;
     private RecycleView_Adapter adapter;
     private Activity activity;
     private List<String> iconStr_List;
     private List<String> nameStr_List;
     private List<String> prizeStr_List;
+    private SortJson sortJson;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class Sort_Fragment_ACC extends Fragment{
         prizeStr_List = new ArrayList<>();
 
         adapter = new RecycleView_Adapter(activity);
-
+        adapter.setOnRVItemClickListener(this);
         rv_acc.setAdapter(adapter);
 
 
@@ -75,7 +78,7 @@ public class Sort_Fragment_ACC extends Fragment{
                 public void onSuccess(String result) {
 //                Log.i(TAG, "onSuccess: "+result);
                     Gson gson = new Gson();
-                    SortJson sortJson = gson.fromJson(result, SortJson.class);
+                    sortJson = gson.fromJson(result, SortJson.class);
                     for(int i = 0; i < sortJson.getList().size() ; i++){
                         String goods_icon_Str = sortJson.getList().get(i).getGoods_icon();
                         String goods_name = sortJson.getList().get(i).getGoods_name();
@@ -109,5 +112,13 @@ public class Sort_Fragment_ACC extends Fragment{
             });
         }
 
+    }
+
+    @Override
+    public void onRVItemClick(View view, int position) {
+        int goods_id = sortJson.getList().get(position).getGoods_id();
+        Intent intent = new Intent(getActivity(), ProductActivity.class);
+        intent.putExtra("goods_id",goods_id);
+        startActivity(intent);
     }
 }

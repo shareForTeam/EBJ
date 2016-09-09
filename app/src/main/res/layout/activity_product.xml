@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="share.com.ebj.ProductActivity">
+    tools:context=".Activity.ProductActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,11 +48,12 @@
                 android:background="#8a8a8a">
 
                 <TextView
+                    android:id="@+id/product_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
+                    android:singleLine="true"
                     android:gravity="center_vertical"
-                    android:text="ABLE JEANS 男式牛仔夹克 "
                     android:textColor="#fefefe"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -62,12 +63,12 @@
                 android:layout_height="40dp">
 
                 <TextView
+                    android:id="@+id/id_product_prize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:text="¥115"
-                    android:textColor="#ff00"
+                    android:textColor="@color/sort_goods_prize"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -109,83 +110,30 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
                 android:layout_height="1dp"
                 android:background="#c8c8c8" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="#eeeeee">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:text="编号:51236610" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="180dp"
-                    android:gravity="center_vertical"
-                    android:text="颜色:白色" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:background="#eeeeee">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:text="编号:51236610" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="180dp"
-                    android:gravity="center_vertical"
-                    android:text="颜色:白色" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:background="#eeeeee">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:text="编号:51236610" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="180dp"
-                    android:gravity="center_vertical"
-                    android:text="颜色:白色" />
-            </RelativeLayout>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/id_product_ll_productinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:text="2014年摩登天空成立旗下实验品牌MODERNSKY LAB,以音乐为 核心及灵感来源进行产品设计并跨界服饰、艺术等领域与多位" />
+                android:orientation="vertical"
+                android:layout_gravity="center">
+            </LinearLayout>
+
+
 
             <TextView
+                android:id="@+id/id_product_washing"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#c8c8c8" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:background="@color/product_info_background"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -210,13 +158,20 @@
                     android:textSize="12sp" />
             </RelativeLayout>
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/product_ll_goods_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+            </LinearLayout>
+            <!--<ImageView
                 android:layout_width="match_parent"
                 android:layout_height="360dp" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="360dp" />
+                android:layout_height="360dp" />-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
