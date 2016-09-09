@@ -7,8 +7,6 @@ package share.com.ebj.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import share.com.ebj.jsonStr.SortJson;
-
 /**
  * 用于将json返回的icon字符串，以分号split，组合成所需集合
  * */

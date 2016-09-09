@@ -78,7 +78,7 @@ public class Sort_Fragment_clothes extends Fragment{
 //                Log.i(TAG, "onSuccess: "+result);
                     Gson gson = new Gson();
                     SortJson sortJson = gson.fromJson(result, SortJson.class);
-                    for(int i = 0 ; i < sortJson.getList().size() ; i++){
+                    for(int i = 0; i < sortJson.getList().size() ; i++){
                         String goods_icon_Str = sortJson.getList().get(i).getGoods_icon();
                         String goods_name = sortJson.getList().get(i).getGoods_name();
                         String goods_price = sortJson.getList().get(i).getGoods_price();

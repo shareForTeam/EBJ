@@ -1,10 +1,12 @@
 package share.com.ebj.leadFragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +30,15 @@ import share.com.ebj.recycleview.RecycleView_Adapter;
  * Created by Administrator on 2016/9/7.
  */
 
-public class Sort_Fragment_skirt extends Fragment {
+public class Sort_Fragment_skirt extends Fragment implements RecycleView_Adapter.OnRVItemClickListener{
+    private String TAG = "crazyK";
     private RecyclerView rv_skirt;
     private RecycleView_Adapter adapter;
     private Activity activity;
     private List<String> iconStr_List;
     private List<String> nameStr_List;
     private List<String> prizeStr_List;
-
+    private SortJson sortJson;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
@@ -48,8 +51,9 @@ public class Sort_Fragment_skirt extends Fragment {
         nameStr_List = new ArrayList<>();
         prizeStr_List = new ArrayList<>();
 
-        adapter = new RecycleView_Adapter(activity);
 
+        adapter = new RecycleView_Adapter(activity);
+        adapter.setOnRVItemClickListener(this);
         rv_skirt.setAdapter(adapter);
 
 
@@ -76,8 +80,8 @@ public class Sort_Fragment_skirt extends Fragment {
                 public void onSuccess(String result) {
 //                Log.i(TAG, "onSuccess: "+result);
                     Gson gson = new Gson();
-                    SortJson sortJson = gson.fromJson(result, SortJson.class);
-                    for(int i = 0 ; i < sortJson.getList().size() ; i++){
+                    sortJson = gson.fromJson(result, SortJson.class);
+                    for(int i = 0; i < sortJson.getList().size() ; i++){
                         String goods_icon_Str = sortJson.getList().get(i).getGoods_icon();
                         String goods_name = sortJson.getList().get(i).getGoods_name();
                         String goods_price = sortJson.getList().get(i).getGoods_price();
@@ -111,4 +115,15 @@ public class Sort_Fragment_skirt extends Fragment {
         }
 
     }
+
+    @Override
+    public void onRVItemClick(View view, int position) {
+        int goods_id = sortJson.getList().get(position).getGoods_id();
+        Intent intent = new Intent()
+//        String name = nameStr_List.get(position);
+//        String prize = prizeStr_List.get(position);
+//        Log.i(TAG, "名字: "+name+"\t"+"价钱："+prize);
+//        Log.i(TAG, "goods_id: "+sortJson.getList().get(position).getGoods_id()+"\t"+"position:"+position);
+    }
+
 }

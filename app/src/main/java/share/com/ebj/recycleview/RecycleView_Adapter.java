@@ -28,6 +28,12 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
     private List<String> nameStr_List = new ArrayList<>();
     private List<String> prizeStr_List = new ArrayList<>();
 
+    public void setOnRVItemClickListener(OnRVItemClickListener onRVItemClickListener) {
+        this.onRVItemClickListener = onRVItemClickListener;
+    }
+
+    private OnRVItemClickListener onRVItemClickListener;
+
 
     public RecycleView_Adapter(Context context){
         this.context = context;
@@ -49,10 +55,18 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         ImageLoader.getInstance().displayImage(iconStr_List.get(position),holder.iv_item);
         holder.tv_name.setText(nameStr_List.get(position));
         holder.tv_prize.setText(prizeStr_List.get(position));
+        holder.iv_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onRVItemClickListener != null){
+                    onRVItemClickListener.onRVItemClick(view , position);
+                }
+            }
+        });
     }
 
     @Override
@@ -70,6 +84,10 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
             tv_name = (TextView) itemView.findViewById(R.id.id_sort_rv_item_tv_goodsname);
             tv_prize = (TextView) itemView.findViewById(R.id.id_sort_rv_item_goodsprize);
         }
+    }
+
+    public interface OnRVItemClickListener{
+        void onRVItemClick(View view, int position);
     }
 
 
