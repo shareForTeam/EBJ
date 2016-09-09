@@ -26,8 +26,6 @@ public class SortActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sort);
 
-
-
         init();
 
         fragments = new ArrayList<Fragment>();
