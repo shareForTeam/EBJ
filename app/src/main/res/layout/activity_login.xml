@@ -3,60 +3,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/login_background"
     android:orientation="vertical"
-    tools:context=".Activity.LoginActivity"
-    android:background="@mipmap/login_background">
+    tools:context=".Activity.LoginActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="222.66dp"
         android:gravity="center">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/login_logo"/>
+            android:src="@mipmap/login_logo" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="22.27dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="500">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/login_id"/>
+                    android:src="@mipmap/login_id" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
                 android:layout_weight="450"
-                android:gravity="center"
                 android:background="@mipmap/login_xiahuaxian"
-                android:layout_marginBottom="1dp">
-                <EditText
-                    android:layout_marginLeft="8dp"
+                android:gravity="center">
+
+                <AutoCompleteTextView
+                    android:id="@+id/login_act_user_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请输入你的手机号"
+                    android:layout_marginLeft="8dp"
                     android:background="@null"
-                    android:singleLine="true"
+                    android:hint="请输入您的账号"
                     android:maxLines="1"
-                    android:textColorHint="@color/hint_color"
+                    android:singleLine="true"
                     android:textColor="@color/login_white"
+                    android:textColorHint="@color/hint_color"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/hint_textsize" />
             </LinearLayout>
@@ -65,99 +72,107 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-    </LinearLayout>
-    
+        android:layout_height="30dp"></LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="22.27dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="500">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/login_pwd"/>
+                    android:src="@mipmap/login_pwd" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
                 android:layout_weight="450"
-                android:gravity="center"
                 android:background="@mipmap/login_xiahuaxian"
-                android:layout_marginBottom="1dp">
+                android:gravity="center">
+
                 <EditText
-                    android:layout_marginLeft="8dp"
+                    android:id="@+id/login_pwd"
                     android:layout_width="0dp"
-                    android:layout_weight="390"
                     android:layout_height="match_parent"
-                    android:hint="请输入你的密码"
-                    android:maxLines="1"
-                    android:inputType="textPassword"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="390"
                     android:background="@null"
+                    android:hint="请输入你的密码"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/login_white"
-                    android:textCursorDrawable="@null"
                     android:textColorHint="@color/hint_color"
-                    android:textSize="@dimen/hint_textsize"/>
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/hint_textsize" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
                     android:gravity="center">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/login_show_pwd"/>
+                        android:src="@mipmap/login_show_pwd" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="26.72dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="164">
-        </LinearLayout>
+            android:layout_weight="164"></LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="350"
             android:gravity="center_vertical">
+
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/remenber_pwd"
-                android:text="记住密码"
-                android:padding="2dp"
                 android:checked="false"
+                android:padding="2dp"
+                android:text="记住密码"
                 android:textColor="@color/login_white"
-                android:textSize="@dimen/hint_textsize"/>
+                android:textSize="@dimen/hint_textsize" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,28 +180,30 @@
             android:layout_height="match_parent"
             android:layout_weight="98"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="忘记密码"
-                android:textSize="@dimen/hint_textsize"
-                android:textColor="@color/login_white"/>
+                android:textColor="@color/login_white"
+                android:textSize="@dimen/hint_textsize" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="66.80dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -194,102 +211,110 @@
             android:gravity="center"
             android:paddingLeft="1dp"
             android:paddingRight="1dp">
+
             <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/login_login_button"/>
+                android:id="@+id/login_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/login_login_button" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
 
     </LinearLayout>
-    
+
     <LinearLayout
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="18dp"
+        android:layout_marginTop="30dp"
         android:gravity="center">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/login_disanfang_pic"/>
+            android:background="@mipmap/login_disanfang_pic" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="9dp">
-    </LinearLayout>
-    
+        android:layout_height="9dp"></LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="500">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/login_qq"/>
+                    android:src="@drawable/login_qq" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/login_weixin"/>
+                    android:src="@drawable/login_weixin" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/login_weibo"/>
+                    android:src="@drawable/login_weibo" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110">
-        </LinearLayout>
+            android:layout_weight="110"></LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-    </LinearLayout>
+        android:layout_height="50dp"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/login_regist"/>
+            android:background="@mipmap/login_regist" />
     </LinearLayout>
-
 
 
 </LinearLayout>

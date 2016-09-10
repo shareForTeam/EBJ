@@ -30,7 +30,7 @@
         <activity android:name=".Activity.PayClickActivity" />
         <activity android:name=".Activity.RegistActivity" />
         <activity android:name=".Activity.SortActivity"></activity>
-        <activity android:name=".Activity.ProductActivity"></activity>
+        <activity android:name=".Activity.ProductActivity" android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

@@ -177,72 +177,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#12110f">
-
+                <!--收藏-->
                 <LinearLayout
                     android:layout_width="55dp"
                     android:layout_height="25dp"
                     android:layout_centerInParent="true"
-                    android:orientation="horizontal"
-                    android:background="@drawable/dot6">
+                    android:background="@drawable/dot6"
+                    android:gravity="center">
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@mipmap/shoucang"
-                        android:layout_gravity="center_vertical"
-                       />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12"
-                        android:textColor="#ffff"
-                        android:textSize="14sp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_gravity="center_vertical"
-                        />
+                        android:src="@mipmap/shoucang"/>
                 </LinearLayout>
 
+                <!--客服-->
                 <LinearLayout
                     android:layout_width="55dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="70dp"
                     android:background="@drawable/dot6"
-                    android:orientation="horizontal">
+                    android:gravity="center">
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
                         android:src="@mipmap/kefu"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="客服"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="#ffff"/>
                 </LinearLayout>
 
+                <!--购物车-->
                 <LinearLayout
+                    android:id="@+id/product_ll_shopcar"
                     android:layout_width="55dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="70dp"
-                    android:background="@drawable/dot6">
+                    android:background="@drawable/dot6"
+                    android:gravity="center">
                     <ImageView
+                        android:id="@+id/product_iv_shopcar"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
                         android:src="@mipmap/car"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="¥119"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="#ffff"/>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

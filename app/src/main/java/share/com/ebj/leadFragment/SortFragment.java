@@ -17,7 +17,7 @@ import share.com.ebj.adapter.SortViewPagerAdapter;
 /**
  * Created by Administrator on 2016/9/8.
  */
-public class SortFragment extends Fragment implements ViewPager.OnPageChangeListener {
+public class SortFragment extends Fragment {
     private String TAG = "crazyK";
     private TabLayout tabLayout;
     private ViewPager viewPager ;//四大分类的viewpager
@@ -42,7 +42,7 @@ public class SortFragment extends Fragment implements ViewPager.OnPageChangeList
         viewPager.setOffscreenPageLimit(4);
         whichSelect();
 
-//        viewPager.setOnPageChangeListener(this);
+
 
         return view;
     }
@@ -58,22 +58,5 @@ public class SortFragment extends Fragment implements ViewPager.OnPageChangeList
         }
     }
 
-    /**四大分类viewpager的监听*/
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        product_id_pageChange = position + 1;
-
-
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
 }

@@ -1,6 +1,9 @@
 package share.com.ebj.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,7 +34,8 @@ import share.com.ebj.Utils.IconStr_To_List;
 import share.com.ebj.adapter.Goods_VP_Adapter;
 import share.com.ebj.jsonStr.ProductJson;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
+    private final int REQUEST_CODE = 0;
     private String TAG = "crazyK";
     private ViewPager vp_product;
     private TextView tv_prize, tv_washing,tv_name;
@@ -43,6 +49,9 @@ public class ProductActivity extends AppCompatActivity {
     private LinearLayout ll_goods_pic;
     //动态添加商品信息
     private LinearLayout id_product_ll_productinfo;
+    //商品信息图片下方的客服、购物车、收藏
+    private LinearLayout ll_shopCar;
+    private ImageView iv_shopCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +62,8 @@ public class ProductActivity extends AppCompatActivity {
         int goods_id = intent.getIntExtra("goods_id", -1);
         Log.i(TAG, "goods_id: " + goods_id);
 
-
         initView();
-
+        initListener();
 
         initSearch(goods_id);
 
@@ -69,6 +77,12 @@ public class ProductActivity extends AppCompatActivity {
         id_product_ll_productinfo = (LinearLayout) findViewById(R.id.id_product_ll_productinfo);
         tv_name = (TextView) findViewById(R.id.product_name);
         ll_goods_pic = (LinearLayout) findViewById(R.id.product_ll_goods_pic);
+        ll_shopCar = (LinearLayout) findViewById(R.id.product_ll_shopcar);
+        iv_shopCar = (ImageView) findViewById(R.id.product_iv_shopcar);
+    }
+
+    public void initListener(){
+        ll_shopCar.setOnClickListener(this);
     }
 
     public void initSearch(int goods_id) {
@@ -192,5 +206,33 @@ public class ProductActivity extends AppCompatActivity {
             public void onFinished() {
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            /**购物车*/
+            case R.id.product_ll_shopcar:
+                SharedPreferences isLogin_SP = getSharedPreferences("isLogin", MODE_PRIVATE);
+                boolean isLogin = isLogin_SP.getBoolean("isLogin", false);
+                if(isLogin){
+                    iv_shopCar.setSelected(true);
+                    // TODO: 2016/9/10 向服务器发送请求，购物车 添加商品id ,操作成功或失败toast
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setTitle(null)
+                            .setMessage("您还未登录，请问是否登录？")
+                            .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent_ProductToLogin = new Intent(ProductActivity.this,LoginActivity.class);
+                                    startActivityForResult(intent_ProductToLogin,REQUEST_CODE);
+                                }
+                            })
+                            .setNegativeButton("否",null)
+                            .create().show();
+                }
+                break;
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -14,13 +15,17 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
+import org.xutils.DbManager;
+import org.xutils.config.DbConfigs;
+import org.xutils.db.table.TableEntity;
 import org.xutils.x;
 
 import share.com.ebj.R;
 
 public class InitActivity extends Application {
+    private String TAG = "crazyK";
     private ImageLoaderConfiguration config;
-
+    public static DbManager.DaoConfig daoConfig;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,6 +33,8 @@ public class InitActivity extends Application {
         x.Ext.init(this);
         /**初始化imageloader*/
         initImageLoader(this);
+        /**初始化xUtils 的DaoConfig*/
+        initDaoConfig();
     }
 
     /**初始化imageloader*/
@@ -57,5 +64,23 @@ public class InitActivity extends Application {
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(config);
+    }
+
+    /**初始化xUtils 的DaoConfig*/
+    public void initDaoConfig(){
+        daoConfig = new DbManager.DaoConfig();
+        daoConfig.setDbName("team_project")
+                .setTableCreateListener(new DbManager.TableCreateListener() {
+                    @Override
+                    public void onTableCreated(DbManager db, TableEntity<?> table) {
+                        Log.i(TAG, "打开表： "+table.getName());
+                    }
+                })
+                .setDbOpenListener(new DbManager.DbOpenListener() {
+                    @Override
+                    public void onDbOpened(DbManager db) {
+                        Log.i(TAG, "打开数据库");
+                    }
+                });
     }
 }
