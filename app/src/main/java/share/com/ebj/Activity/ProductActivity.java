@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
+import org.xutils.HttpManager;
 import org.xutils.common.Callback;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
@@ -30,13 +31,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import share.com.ebj.R;
+import share.com.ebj.SingleUser.UserSingleton;
+import share.com.ebj.Utils.DBOperation;
 import share.com.ebj.Utils.IconStr_To_List;
 import share.com.ebj.adapter.Goods_VP_Adapter;
 import share.com.ebj.jsonStr.ProductJson;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private final int REQUEST_CODE = 0;
     private String TAG = "crazyK";
+    private final int REQUEST_CODE = 0;
+    //从分类界面传来的goods_id
+    private int goods_id;
+
     private ViewPager vp_product;
     private TextView tv_prize, tv_washing,tv_name;
     private ProductJson productJson;
@@ -59,13 +65,17 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_product);
 
         Intent intent = getIntent();
-        int goods_id = intent.getIntExtra("goods_id", -1);
-        Log.i(TAG, "goods_id: " + goods_id);
+
+        goods_id = intent.getIntExtra("goods_id", -1);
+//        Log.i(TAG, "goods_id: " + goods_id);
 
         initView();
         initListener();
 
         initSearch(goods_id);
+
+        /**判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
+        isLogin(""+goods_id);
 
 
     }
@@ -122,6 +132,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
                 /**设置价格*/
                 tv_prize.setText(goods_price);
+                // TODO: 2016/9/11 价格前面加上RMB符号
 
                 /**设置名字*/
                 tv_name.setText(goods_name);
@@ -213,11 +224,27 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()){
             /**购物车*/
             case R.id.product_ll_shopcar:
-                SharedPreferences isLogin_SP = getSharedPreferences("isLogin", MODE_PRIVATE);
-                boolean isLogin = isLogin_SP.getBoolean("isLogin", false);
-                if(isLogin){
-                    iv_shopCar.setSelected(true);
-                    // TODO: 2016/9/10 向服务器发送请求，购物车 添加商品id ,操作成功或失败toast
+                SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
+                int loginSP_user_id = loginSP.getInt("user_id", -1);
+                if(loginSP_user_id != -1){
+                    // TODO: 2016/9/11 把iv_shopCar --> drawable
+                    if(iv_shopCar.isSelected() ){
+                        // TODO: 2016/9/11 删除收藏 ：删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据
+                        Toast.makeText(ProductActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
+                    }else {
+                        /**iv_shopcar未被选中时，向服务器发送请求，购物车 添加商品id ,操作成功或失败toast*/
+                        /**更新UserSingleton中的goods_id*/
+                        UserSingleton userSingleton = UserSingleton.getInstance();
+                        String new_goods_id = userSingleton.addGoods_id("" + goods_id);
+                        /**更新web数据库中的数据*/
+                        addGoodsToShopCar(loginSP_user_id,new_goods_id);
+                        /**更新本地数据库中的数据*/
+                        DBOperation dbOperation = new DBOperation();
+                        dbOperation.addGoods_id_To_ShopCar(loginSP_user_id,new_goods_id);
+                        iv_shopCar.setSelected(true);
+                    }
+
+
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setTitle(null)
@@ -226,7 +253,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Intent intent_ProductToLogin = new Intent(ProductActivity.this,LoginActivity.class);
-                                    startActivityForResult(intent_ProductToLogin,REQUEST_CODE);
+                                    startActivity(intent_ProductToLogin);
                                 }
                             })
                             .setNegativeButton("否",null)
@@ -234,5 +261,70 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
         }
+    }
+
+
+    /**向服务器发送请求，购物车 添加商品id ,操作成功或失败toast*/
+    public void addGoodsToShopCar(int user_id ,String new_goods_id){
+        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        params.addParameter("type","android");
+        params.addParameter("query","user_goods");
+        params.addParameter("user_id",user_id);
+        params.addParameter("goods_id",new_goods_id);
+
+        x.http().request(HttpMethod.POST, params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if(result.equals("购物车更新成功")){
+
+                    Toast.makeText(ProductActivity.this, "添加商品成功", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+
+        });
+
+    }
+
+    /**判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
+    public void isLogin(String goods_id){
+        SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
+        int loginSP_user_id = loginSP.getInt("user_id", -1);
+        if(loginSP_user_id == -1){
+            iv_shopCar.setSelected(false);
+//            return false;
+        }else {
+//            return true;
+            /**登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
+            UserSingleton userSingleton = UserSingleton.getInstance();
+            String user_goods_id = userSingleton.getGoods_id();
+            boolean isExit = user_goods_id.contains(goods_id);
+            if(isExit){
+                iv_shopCar.setSelected(true);
+            }else {
+                iv_shopCar.setSelected(false);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isLogin(""+goods_id);
     }
 }

@@ -8,7 +8,7 @@ import org.xutils.db.annotation.Table;
  */
 @Table(name = "user")
 public class User_Info {
-    @Column(name = "user_id", isId = true , autoGen = true)
+    @Column(name = "user_id", isId = true , autoGen = false)
     private int user_id;
     @Column(name = "name")
     private String name;
@@ -18,18 +18,19 @@ public class User_Info {
     private String self_sign;
     @Column(name = "icon")
     private String icon;
-    @Column(name = "shopcar_id")
-    private int shopcar_id;
+    @Column(name = "goods_id")
+    private String goods_id;
 
     public User_Info() {
     }
 
-    public User_Info(String name, String pwd, String self_sign, String icon, int shopcar_id) {
+    public User_Info(int user_id,String name, String pwd, String self_sign, String icon,  String goods_id) {
+        this.user_id =user_id;
         this.name = name;
         this.pwd = pwd;
         this.self_sign = self_sign;
         this.icon = icon;
-        this.shopcar_id = shopcar_id;
+        this.goods_id = goods_id;
     }
 
     public int getUser_id() {
@@ -72,11 +73,11 @@ public class User_Info {
         this.icon = icon;
     }
 
-    public int getShopcar_id() {
-        return shopcar_id;
+    public String getGoods_id() {
+        return goods_id;
     }
 
-    public void setShopcar_id(int shopcar_id) {
-        this.shopcar_id = shopcar_id;
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
     }
 }
