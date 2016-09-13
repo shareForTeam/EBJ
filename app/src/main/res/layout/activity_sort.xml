@@ -20,6 +20,7 @@
         android:layout_height="40dp"
         android:background="#12110f"
         android:gravity="bottom"
+        android:checkedButton="@+id/sort_rb2"
         android:orientation="horizontal">
 
         <RadioButton
@@ -38,7 +39,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="true"
             android:drawableTop="@drawable/sort_change_color"
             android:paddingTop="10dp" />
 

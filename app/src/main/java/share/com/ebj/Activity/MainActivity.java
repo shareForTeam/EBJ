@@ -1,6 +1,7 @@
 package share.com.ebj.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -62,10 +63,23 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, MySelfCenterActivity.class);
-                startActivity(intent);
-                resideMenu.closeMenu();
+//                Intent intent = new Intent();
+//                intent.setClass(MainActivity.this, MySelfCenterActivity.class);
+//                startActivity(intent);
+                SharedPreferences login_SP = getSharedPreferences("user_id", MODE_PRIVATE);
+                int user_id = login_SP.getInt("user_id", -1);
+                if(user_id == -1){
+                    Intent intent_MainToLogin = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(intent_MainToLogin);
+                }else {
+                    Intent intent_MainToSort = new Intent(MainActivity.this,SortActivity.class);
+
+                    intent_MainToSort.putExtra("user_id",user_id);
+                    startActivity(intent_MainToSort);
+
+                    resideMenu.closeMenu();
+                }
+
             }
         });
         store.setOnClickListener(new View.OnClickListener() {

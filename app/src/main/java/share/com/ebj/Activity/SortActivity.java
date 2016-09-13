@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import share.com.ebj.R;
@@ -16,6 +19,7 @@ import share.com.ebj.leadFragment.MySelfFragment;
 import share.com.ebj.leadFragment.SortFragment;
 
 public class SortActivity extends AppCompatActivity {
+    private String TAG = "crazyK";
     private List<Fragment> fragments;
     private MyViewPager sort_viewPager;
     private RadioGroup sort_group;
@@ -28,6 +32,7 @@ public class SortActivity extends AppCompatActivity {
 
         init();
 
+
         fragments = new ArrayList<Fragment>();
         fragments.add(new SortFragment());
         fragments.add(new CarFragment());
@@ -35,6 +40,15 @@ public class SortActivity extends AppCompatActivity {
         final FragmentManager fm = this.getSupportFragmentManager();
         sort_viewPager.setAdapter(new SortPager_Adapter(fm, fragments));
         sort_viewPager.setOffscreenPageLimit(4);
+        /**通过main的个人中心进入*/
+        Intent intentFromMain = getIntent();
+        int user_id = intentFromMain.getIntExtra("user_id", -1);
+        if(user_id != -1){
+            sort_viewPager.setCurrentItem(2);
+            sort_group.check(R.id.sort_rb4);
+        }
+
+
 
         sort_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

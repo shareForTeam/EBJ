@@ -261,10 +261,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                         String new_goods_id_add = strManager.addGoods_id(user_goods_id, "" + this.goods_id);
                         /**更新web数据库中的数据*/
                         updateUserGoods_iv_unSelected(loginSP_user_id,new_goods_id_add);
-//                        /**更新本地数据库中的数据*/
-//                        DBOperation dbOperation = new DBOperation();
-//                        dbOperation.addGoods_id_To_ShopCar(loginSP_user_id,new_goods_id);
-//                        iv_shopCar.setSelected(true);
                     }
 
 
@@ -310,22 +306,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                     }else {
                         Toast.makeText(ProductActivity.this, "本地数据库更新异常", Toast.LENGTH_SHORT).show();
                     }
-//                    DbManager dbManager = x.getDb(InitActivity.daoConfig);
-//                    WhereBuilder whereBuilder = WhereBuilder.b();
-//                    whereBuilder.and("user_id","=",user_id);
-//                    KeyValue keyValue = new KeyValue("goods_id",new_goods_id);
-//                    try {
-//                        int isUpdate = dbManager.update(User_Info.class, whereBuilder, keyValue);
-//                        Log.i(TAG, "isUpdate: "+isUpdate);
-//                        if(isUpdate != 1){
-//                            Toast.makeText(ProductActivity.this, "数据库更新异常", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } catch (DbException e) {
-//                        e.printStackTrace();
-//                    }
                     /**更新 删除单例goods_id*/
                     UserSingleton.getInstance().setGoods_id(new_goods_id);
                     iv_shopCar.setSelected(false);
+                    ll_shopCar.setSelected(false);
                 }
             }
 
@@ -370,6 +354,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                     /**更新 删除单例goods_id*/
                     UserSingleton.getInstance().setGoods_id(new_goods_id);
                     iv_shopCar.setSelected(true);
+                    ll_shopCar.setSelected(true);
                 }
             }
 
@@ -397,6 +382,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         int loginSP_user_id = loginSP.getInt("user_id", -1);
         if(loginSP_user_id == -1){
             iv_shopCar.setSelected(false);
+            ll_shopCar.setSelected(false);
 //            return false;
         }else {
 //            return true;
@@ -407,11 +393,14 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 boolean isExit = user_goods_id.contains(goods_id);
                 if(isExit){
                     iv_shopCar.setSelected(true);
+                    ll_shopCar.setSelected(true);
                 }else {
                     iv_shopCar.setSelected(false);
+                    ll_shopCar.setSelected(false);
                 }
             }else {
                 iv_shopCar.setSelected(false);
+                ll_shopCar.setSelected(false);
             }
 
         }

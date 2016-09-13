@@ -212,13 +212,13 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="70dp"
-                    android:background="@drawable/dot6"
+                    android:background="@drawable/dot_normal_2"
                     android:gravity="center">
                     <ImageView
                         android:id="@+id/product_iv_shopcar"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@mipmap/car"/>
+                        android:src="@drawable/shopcar"/>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
