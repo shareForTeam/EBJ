@@ -131,13 +131,18 @@
             android:layout_weight="140"
             android:gravity="center">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pay_prize_red"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:text="￥299元"
-                android:textColor="#ff6f06"
-                android:textSize="16sp"
+                android:textStyle="italic|bold"
+                android:text="299"
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/sort_goods_prize"
+                android:textSize="18sp"
                 android:id="@+id/textView" />
 
         </LinearLayout>

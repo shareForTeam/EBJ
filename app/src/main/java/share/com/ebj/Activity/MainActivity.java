@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity.this, MySelfCenterActivity.class);
-//                startActivity(intent);
                 SharedPreferences login_SP = getSharedPreferences("user_id", MODE_PRIVATE);
                 int user_id = login_SP.getInt("user_id", -1);
                 if(user_id == -1){
