@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EBJ</string>
+    <string name="pay1">待付款</string>
+    <string name="pay2">待收货</string>
+    <string name="pay3">待发货</string>
+    <string name="pay4">退/换货</string>
 </resources>

@@ -25,5 +25,7 @@
     <!--商品详情 信息文字颜色-->
     <color name="product_info_text">#6d6d6d</color>
     <!--个人设置界面-->
+    <color name="login">#444342</color>
+    <color name="login1">#22211f</color>
 
 </resources>

@@ -47,7 +47,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private int goods_id;
 
     private ViewPager vp_product;
-    private TextView tv_prize, tv_washing,tv_name;
+    private TextView tv_prize, tv_washing, tv_name;
     private ProductJson productJson;
     private String goods_name;
     private String goods_price;
@@ -56,6 +56,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private List<String> description_List;
     //动态添加商品图片
     private LinearLayout ll_goods_pic;
+    private ImageView imageView_car;
     //动态添加商品信息
     private LinearLayout id_product_ll_productinfo;
     //商品信息图片下方的客服、购物车、收藏
@@ -73,7 +74,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = getIntent();
 
         goods_id = intent.getIntExtra("goods_id", -1);
-//        Log.i(TAG, "goods_id: " + goods_id);
 
         initView();
         initListener();
@@ -81,7 +81,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         initSearch(goods_id);
 
         /**判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
-        isLogin(""+goods_id);
+        isLogin("" + goods_id);
 
 
     }
@@ -95,9 +95,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         ll_goods_pic = (LinearLayout) findViewById(R.id.product_ll_goods_pic);
         ll_shopCar = (LinearLayout) findViewById(R.id.product_ll_shopcar);
         iv_shopCar = (ImageView) findViewById(R.id.product_iv_shopcar);
+        imageView_car = (ImageView) findViewById(R.id.product_iv_shopcar);
     }
 
-    public void initListener(){
+    public void initListener() {
         ll_shopCar.setOnClickListener(this);
     }
 
@@ -119,7 +120,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
                 Gson gson = new Gson();
                 productJson = gson.fromJson(result, ProductJson.class);
-//                for(int i = 0; i < productJson.getList().size() ; i++){
                 String goods_icon_Str = productJson.getList().get(0).getGoods_icon();
                 goods_name = productJson.getList().get(0).getGoods_name();
                 goods_price = productJson.getList().get(0).getGoods_price();
@@ -130,8 +130,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 StrManager str_manager = new StrManager();
                 iconStr_List = str_manager.getIconList(goods_icon_Str);
                 description_List = str_manager.getIconList(goods_description);
-//                }
-//                product_rv_adapter.setIconStr_List(description_List);
 
                 /**设置商品washing信息*/
                 tv_washing.setText(goods_washing);
@@ -166,12 +164,12 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
                 /**动态添加商品图片*/
                 ImageLoader imageLoader = ImageLoader.getInstance();
-                for(int i = 0 ; i < iconStr_List.size() ; i++){
+                for (int i = 0; i < iconStr_List.size(); i++) {
                     ImageView imageView = new ImageView(ProductActivity.this);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(0,7,0,7);
+                    params.setMargins(0, 7, 0, 7);
                     imageView.setLayoutParams(params);
-                    imageLoader.displayImage(iconStr_List.get(i),imageView);
+                    imageLoader.displayImage(iconStr_List.get(i), imageView);
                     ll_goods_pic.addView(imageView);
                 }
 
@@ -227,31 +225,33 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             /**购物车*/
             case R.id.product_ll_shopcar:
+                imageView_car.setImageResource(R.drawable.shopcar);
+
                 SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
 
                 loginSP_user_id = loginSP.getInt("user_id", -1);
-                if(loginSP_user_id != -1){
+                if (loginSP_user_id != -1) {
                     // TODO: 2016/9/11 把iv_shopCar --> drawable
-                    if(iv_shopCar.isSelected() ){
+                    if (iv_shopCar.isSelected()) {
                         // TODO: 2016/9/11 删除收藏 ：删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据
                         /**删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据*/
                         UserSingleton userSingleton = UserSingleton.getInstance();
                         String user_goods_id = userSingleton.getGoods_id();
                         StrManager strManager = new StrManager();
                         this.new_goods_id_del = strManager.deleteGoods_id(user_goods_id, "" + this.goods_id);
-                        if(this.new_goods_id_del == null){
+                        if (this.new_goods_id_del == null) {
                             return;
-                        }else {
+                        } else {
                             /**更新服务器数据库
                              * 若成功在onSuccess中更新本地及单例
                              * */
-                            updateUserGoods_iv_selected(this.loginSP_user_id,this.new_goods_id_del);
+                            updateUserGoods_iv_selected(this.loginSP_user_id, this.new_goods_id_del);
                         }
 
-                    }else {
+                    } else {
                         /**iv_shopcar未被选中时，向服务器发送请求，购物车 添加商品id ,操作成功或失败toast*/
 
                         UserSingleton userSingleton = UserSingleton.getInstance();
@@ -260,22 +260,22 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                         StrManager strManager = new StrManager();
                         String new_goods_id_add = strManager.addGoods_id(user_goods_id, "" + this.goods_id);
                         /**更新web数据库中的数据*/
-                        updateUserGoods_iv_unSelected(loginSP_user_id,new_goods_id_add);
+                        updateUserGoods_iv_unSelected(loginSP_user_id, new_goods_id_add);
                     }
 
 
-                }else {
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                            builder.setTitle(null)
+                    builder.setTitle(null)
                             .setMessage("您还未登录，请问是否登录？")
                             .setPositiveButton("是", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent_ProductToLogin = new Intent(ProductActivity.this,LoginActivity.class);
+                                    Intent intent_ProductToLogin = new Intent(ProductActivity.this, LoginActivity.class);
                                     startActivity(intent_ProductToLogin);
                                 }
                             })
-                            .setNegativeButton("否",null)
+                            .setNegativeButton("否", null)
                             .create().show();
                 }
                 break;
@@ -283,27 +283,27 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    /**向服务器发送请求，购物车 添加商品id ,操作成功或失败toast
+    /**
+     * 向服务器发送请求，购物车 添加商品id ,操作成功或失败toast
      * 实质为：用new_goods_id 更新数据库
-     * */
-    public void updateUserGoods_iv_selected(final int user_id , final String new_goods_id){
+     */
+    public void updateUserGoods_iv_selected(final int user_id, final String new_goods_id) {
 
         RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
-        params.addParameter("type","android");
-        params.addParameter("query","user_goods");
-        params.addParameter("user_id",user_id);
-        params.addParameter("goods_id",new_goods_id);
-
+        params.addParameter("type", "android");
+        params.addParameter("query", "user_goods");
+        params.addParameter("user_id", user_id);
+        params.addParameter("goods_id", new_goods_id);
         x.http().request(HttpMethod.POST, params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                if(result.equals("购物车更新成功")){
+                if (result.equals("购物车更新成功")) {
                     /**更新删除本地数据库*/
                     DBOperation dbOperation = new DBOperation();
                     boolean isSuccess = dbOperation.updateGoods_id_To_ShopCar(user_id, new_goods_id);
-                    if(isSuccess){
+                    if (isSuccess) {
 
-                    }else {
+                    } else {
                         Toast.makeText(ProductActivity.this, "本地数据库更新异常", Toast.LENGTH_SHORT).show();
                     }
                     /**更新 删除单例goods_id*/
@@ -332,23 +332,23 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void updateUserGoods_iv_unSelected(final int user_id , final String new_goods_id){
+    public void updateUserGoods_iv_unSelected(final int user_id, final String new_goods_id) {
         RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
-        params.addParameter("type","android");
-        params.addParameter("query","user_goods");
-        params.addParameter("user_id",user_id);
-        params.addParameter("goods_id",new_goods_id);
+        params.addParameter("type", "android");
+        params.addParameter("query", "user_goods");
+        params.addParameter("user_id", user_id);
+        params.addParameter("goods_id", new_goods_id);
 
         x.http().request(HttpMethod.POST, params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                if(result.equals("购物车更新成功")){
+                if (result.equals("购物车更新成功")) {
                     /**更新删除本地数据库*/
                     DBOperation dbOperation = new DBOperation();
                     boolean isSuccess = dbOperation.updateGoods_id_To_ShopCar(user_id, new_goods_id);
-                    if(isSuccess){
+                    if (isSuccess) {
 
-                    }else {
+                    } else {
                         Toast.makeText(ProductActivity.this, "本地数据库更新异常", Toast.LENGTH_SHORT).show();
                     }
                     /**更新 删除单例goods_id*/
@@ -376,29 +376,29 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    /**判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
-    public void isLogin(String goods_id){
+    /**
+     * 判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态
+     */
+    public void isLogin(String goods_id) {
         SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
         int loginSP_user_id = loginSP.getInt("user_id", -1);
-        if(loginSP_user_id == -1){
+        if (loginSP_user_id == -1) {
             iv_shopCar.setSelected(false);
             ll_shopCar.setSelected(false);
-//            return false;
-        }else {
-//            return true;
+        } else {
             /**登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
             UserSingleton userSingleton = UserSingleton.getInstance();
             String user_goods_id = userSingleton.getGoods_id();
-            if(user_goods_id != null){
+            if (user_goods_id != null) {
                 boolean isExit = user_goods_id.contains(goods_id);
-                if(isExit){
+                if (isExit) {
                     iv_shopCar.setSelected(true);
                     ll_shopCar.setSelected(true);
-                }else {
+                } else {
                     iv_shopCar.setSelected(false);
                     ll_shopCar.setSelected(false);
                 }
-            }else {
+            } else {
                 iv_shopCar.setSelected(false);
                 ll_shopCar.setSelected(false);
             }
@@ -409,6 +409,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
-        isLogin(""+goods_id);
+        isLogin("" + goods_id);
     }
 }
