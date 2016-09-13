@@ -13,16 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
-import org.xutils.HttpManager;
+import org.xutils.DbManager;
 import org.xutils.common.Callback;
+import org.xutils.common.util.KeyValue;
+import org.xutils.db.sqlite.WhereBuilder;
+import org.xutils.ex.DbException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -33,9 +34,11 @@ import java.util.List;
 import share.com.ebj.R;
 import share.com.ebj.SingleUser.UserSingleton;
 import share.com.ebj.Utils.DBOperation;
-import share.com.ebj.Utils.IconStr_To_List;
+import share.com.ebj.Utils.StrManager;
 import share.com.ebj.adapter.Goods_VP_Adapter;
+import share.com.ebj.init.InitActivity;
 import share.com.ebj.jsonStr.ProductJson;
+import share.com.ebj.sqlite.User_Info;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
     private String TAG = "crazyK";
@@ -58,6 +61,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     //商品信息图片下方的客服、购物车、收藏
     private LinearLayout ll_shopCar;
     private ImageView iv_shopCar;
+
+    private int loginSP_user_id;
+    private String new_goods_id_del;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +127,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 String goods_description = productJson.getList().get(0).getGoods_description();
 
 
-                IconStr_To_List iconStr_to_list = new IconStr_To_List();
-                iconStr_List = iconStr_to_list.getIconList(goods_icon_Str);
-                description_List = iconStr_to_list.getIconList(goods_description);
+                StrManager str_manager = new StrManager();
+                iconStr_List = str_manager.getIconList(goods_icon_Str);
+                description_List = str_manager.getIconList(goods_description);
 //                }
 //                product_rv_adapter.setIconStr_List(description_List);
 
@@ -225,23 +231,40 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             /**购物车*/
             case R.id.product_ll_shopcar:
                 SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
-                int loginSP_user_id = loginSP.getInt("user_id", -1);
+
+                loginSP_user_id = loginSP.getInt("user_id", -1);
                 if(loginSP_user_id != -1){
                     // TODO: 2016/9/11 把iv_shopCar --> drawable
                     if(iv_shopCar.isSelected() ){
                         // TODO: 2016/9/11 删除收藏 ：删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据
-                        Toast.makeText(ProductActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
+                        /**删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据*/
+                        UserSingleton userSingleton = UserSingleton.getInstance();
+                        String user_goods_id = userSingleton.getGoods_id();
+                        StrManager strManager = new StrManager();
+                        this.new_goods_id_del = strManager.deleteGoods_id(user_goods_id, "" + this.goods_id);
+                        if(this.new_goods_id_del == null){
+                            return;
+                        }else {
+                            /**更新服务器数据库
+                             * 若成功在onSuccess中更新本地及单例
+                             * */
+                            updateUserGoods_iv_selected(this.loginSP_user_id,this.new_goods_id_del);
+                        }
+
                     }else {
                         /**iv_shopcar未被选中时，向服务器发送请求，购物车 添加商品id ,操作成功或失败toast*/
-                        /**更新UserSingleton中的goods_id*/
+
                         UserSingleton userSingleton = UserSingleton.getInstance();
-                        String new_goods_id = userSingleton.addGoods_id("" + goods_id);
+//                        String new_goods_id = userSingleton.addGoods_id("" + this.goods_id);
+                        String user_goods_id = userSingleton.getGoods_id();
+                        StrManager strManager = new StrManager();
+                        String new_goods_id_add = strManager.addGoods_id(user_goods_id, "" + this.goods_id);
                         /**更新web数据库中的数据*/
-                        addGoodsToShopCar(loginSP_user_id,new_goods_id);
-                        /**更新本地数据库中的数据*/
-                        DBOperation dbOperation = new DBOperation();
-                        dbOperation.addGoods_id_To_ShopCar(loginSP_user_id,new_goods_id);
-                        iv_shopCar.setSelected(true);
+                        updateUserGoods_iv_unSelected(loginSP_user_id,new_goods_id_add);
+//                        /**更新本地数据库中的数据*/
+//                        DBOperation dbOperation = new DBOperation();
+//                        dbOperation.addGoods_id_To_ShopCar(loginSP_user_id,new_goods_id);
+//                        iv_shopCar.setSelected(true);
                     }
 
 
@@ -264,8 +287,11 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    /**向服务器发送请求，购物车 添加商品id ,操作成功或失败toast*/
-    public void addGoodsToShopCar(int user_id ,String new_goods_id){
+    /**向服务器发送请求，购物车 添加商品id ,操作成功或失败toast
+     * 实质为：用new_goods_id 更新数据库
+     * */
+    public void updateUserGoods_iv_selected(final int user_id , final String new_goods_id){
+
         RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
         params.addParameter("type","android");
         params.addParameter("query","user_goods");
@@ -276,8 +302,30 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onSuccess(String result) {
                 if(result.equals("购物车更新成功")){
+                    /**更新删除本地数据库*/
+                    DBOperation dbOperation = new DBOperation();
+                    boolean isSuccess = dbOperation.updateGoods_id_To_ShopCar(user_id, new_goods_id);
+                    if(isSuccess){
 
-                    Toast.makeText(ProductActivity.this, "添加商品成功", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(ProductActivity.this, "本地数据库更新异常", Toast.LENGTH_SHORT).show();
+                    }
+//                    DbManager dbManager = x.getDb(InitActivity.daoConfig);
+//                    WhereBuilder whereBuilder = WhereBuilder.b();
+//                    whereBuilder.and("user_id","=",user_id);
+//                    KeyValue keyValue = new KeyValue("goods_id",new_goods_id);
+//                    try {
+//                        int isUpdate = dbManager.update(User_Info.class, whereBuilder, keyValue);
+//                        Log.i(TAG, "isUpdate: "+isUpdate);
+//                        if(isUpdate != 1){
+//                            Toast.makeText(ProductActivity.this, "数据库更新异常", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } catch (DbException e) {
+//                        e.printStackTrace();
+//                    }
+                    /**更新 删除单例goods_id*/
+                    UserSingleton.getInstance().setGoods_id(new_goods_id);
+                    iv_shopCar.setSelected(false);
                 }
             }
 
@@ -296,9 +344,51 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
             }
 
-
         });
 
+    }
+
+    public void updateUserGoods_iv_unSelected(final int user_id , final String new_goods_id){
+        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        params.addParameter("type","android");
+        params.addParameter("query","user_goods");
+        params.addParameter("user_id",user_id);
+        params.addParameter("goods_id",new_goods_id);
+
+        x.http().request(HttpMethod.POST, params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if(result.equals("购物车更新成功")){
+                    /**更新删除本地数据库*/
+                    DBOperation dbOperation = new DBOperation();
+                    boolean isSuccess = dbOperation.updateGoods_id_To_ShopCar(user_id, new_goods_id);
+                    if(isSuccess){
+
+                    }else {
+                        Toast.makeText(ProductActivity.this, "本地数据库更新异常", Toast.LENGTH_SHORT).show();
+                    }
+                    /**更新 删除单例goods_id*/
+                    UserSingleton.getInstance().setGoods_id(new_goods_id);
+                    iv_shopCar.setSelected(true);
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+        });
     }
 
     /**判断是否登录,登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/

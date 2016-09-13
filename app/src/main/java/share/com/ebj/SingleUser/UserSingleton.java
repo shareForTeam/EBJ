@@ -40,17 +40,17 @@ public class UserSingleton {
     }
 
 
-    public String addGoods_id(String add_goods_id) {
-        String new_goods_id = this.goods_id + ";" + add_goods_id;
-        this.goods_id = new_goods_id;
-        return new_goods_id;
-    }
+//    public String addGoods_id(String add_goods_id) {
+//        String new_goods_id = this.goods_id + ";" + add_goods_id;
+//        this.goods_id = new_goods_id;
+//        return new_goods_id;
+//    }
 
     public List<String> getGoods_id_List() {
         String[] split = this.goods_id.split(";");
         ArrayList<String> arrayList = new ArrayList<>();
         for (String string : split) {
-            if (string.equals("null")) {
+            if (string.equals("null")|| string.equals("")) {
                 continue;
             } else {
                 arrayList.add(string);
@@ -60,16 +60,23 @@ public class UserSingleton {
     }
 
 
-    public void deleteGoods_id(String delete_goods_id) {
-        if (this.goods_id.contains(delete_goods_id)) {
-            int startIndex = this.goods_id.indexOf(delete_goods_id);
-            int lastIndexOf = this.goods_id.lastIndexOf(delete_goods_id);
-            this.goods_id.substring(startIndex, lastIndexOf);
-        } else {
-            Log.i(TAG, "UserSingleton --> deleteGoods_id 失败，delete_goods_id不存在 ");
-        }
-
-    }
+//    public String deleteGoods_id(String delete_goods_id) {
+//        /**
+//         * 注意：str.subString(start,end),为前闭后开区间
+//         * */
+//        if (this.goods_id.contains(delete_goods_id)) {
+//            int position = this.goods_id.indexOf(delete_goods_id);
+//            int src_Length = this.goods_id.length();
+//            int del_Length = delete_goods_id.length();
+//            String new_goods_id = this.goods_id.substring(0, position - 1) + this.goods_id.substring(position+del_Length ,src_Length);
+//            this.goods_id = new_goods_id;
+//            return new_goods_id;
+//        } else {
+//            Log.i(TAG, "UserSingleton --> deleteGoods_id 失败，delete_goods_id不存在 ");
+//            return null;
+//        }
+//
+//    }
 
 
     public int getUser_id() {

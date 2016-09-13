@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            /**登录按钮*/
             case R.id.login_login:
                 String name = autoCompleteTextView.getText().toString().trim();
                 String pwd = et_pwd.getText().toString().trim();

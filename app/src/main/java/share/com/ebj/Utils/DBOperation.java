@@ -51,24 +51,31 @@ public class DBOperation {
     }
 
     /**向本地数据库user修改购物车goods_id*/
-    public boolean addGoods_id_To_ShopCar(int user_id,String new_goods_id){
+    public boolean updateGoods_id_To_ShopCar(int user_id,String new_goods_id){
         DbManager dbManager = x.getDb(InitActivity.daoConfig);
         try {
             WhereBuilder whereBuilder = WhereBuilder.b();
             whereBuilder.and("user_id","=",user_id);
             KeyValue keyValue = new KeyValue("goods_id",new_goods_id);
-            dbManager.update(User_Info.class,whereBuilder,keyValue);
-            return true;
+            int update = dbManager.update(User_Info.class, whereBuilder, keyValue);
+            if(update == 1){
+                return true;
+            }else {
+                return false;
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    /**当点击登录后，访问服务器，将服务器的个人信息写入本地数据库*/
+    /**当点击登录后，访问服务器，将服务器的个人信息写入本地数据库
+     * 注意：在这个方法前，一定要先进行服务器更新数据
+     * */
     public boolean updateDB(int user_id ,String name ,String pwd ,String self_sign ,String icon ,String goods_id ){
         DbManager dbManager = x.getDb(InitActivity.daoConfig);
         try {
+
             dbManager.saveOrUpdate(new User_Info(user_id , name , pwd , self_sign , icon , goods_id));
             return true;
         } catch (DbException e) {
@@ -76,4 +83,7 @@ public class DBOperation {
             return false;
         }
     }
+
+    /**点击取消收藏后，删除数据库中goods_id相应的字符串（修改数据库中goods_id内容）*/
+
 }

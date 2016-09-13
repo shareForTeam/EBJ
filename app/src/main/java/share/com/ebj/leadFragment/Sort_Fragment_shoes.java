@@ -22,7 +22,7 @@ import java.util.List;
 
 import share.com.ebj.Activity.ProductActivity;
 import share.com.ebj.R;
-import share.com.ebj.Utils.IconStr_To_List;
+import share.com.ebj.Utils.StrManager;
 import share.com.ebj.jsonStr.SortJson;
 import share.com.ebj.recycleview.RecycleView_Adapter;
 
@@ -86,8 +86,8 @@ public class Sort_Fragment_shoes extends Fragment implements RecycleView_Adapter
                         nameStr_List.add(goods_name);
                         prizeStr_List.add(goods_price);
 
-                        IconStr_To_List iconStr_to_list = new IconStr_To_List();
-                        List<String> iconList = iconStr_to_list.getIconList(goods_icon_Str);
+                        StrManager str_manager = new StrManager();
+                        List<String> iconList = str_manager.getIconList(goods_icon_Str);
                         String first_icon = iconList.get(0);
                         iconStr_List.add(first_icon);
                     }
