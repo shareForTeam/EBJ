@@ -202,6 +202,7 @@
                 android:layout_height="50dp">
 
                 <TextView
+                    android:id="@+id/setting_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
