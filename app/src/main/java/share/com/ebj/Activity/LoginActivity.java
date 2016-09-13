@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private AutoCompleteTextView autoCompleteTextView;
     private List<UserLogin> userLoginList;
     //登录
-    private ImageView iv_login;
+    private ImageView iv_login,iv_regist;
     private EditText et_pwd;
 
     private final int RESULT_CODE = 0;
@@ -57,10 +57,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.login_act_user_id);
         et_pwd = (EditText) findViewById(R.id.login_pwd);
         iv_login = (ImageView) findViewById(R.id.login_login);
+        iv_regist = (ImageView) findViewById(R.id.login_regist);
     }
 
     public void initListener(){
         iv_login.setOnClickListener(this);
+        iv_regist.setOnClickListener(this);
 
         /**addTextChangedListener*/
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -165,7 +167,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
 
                 }
+                break;
 
+            /**登录按钮*/
+            case R.id.login_regist:
+                Intent intent_LoginToRegist = new Intent(this,RegistActivity.class);
+                startActivity(intent_LoginToRegist);
                 break;
         }
     }

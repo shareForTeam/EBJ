@@ -403,12 +403,17 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             /**登录状态下判断是否已经收藏该商品，设置iv_shopCar的选中状态*/
             UserSingleton userSingleton = UserSingleton.getInstance();
             String user_goods_id = userSingleton.getGoods_id();
-            boolean isExit = user_goods_id.contains(goods_id);
-            if(isExit){
-                iv_shopCar.setSelected(true);
+            if(user_goods_id != null){
+                boolean isExit = user_goods_id.contains(goods_id);
+                if(isExit){
+                    iv_shopCar.setSelected(true);
+                }else {
+                    iv_shopCar.setSelected(false);
+                }
             }else {
                 iv_shopCar.setSelected(false);
             }
+
         }
     }
 
