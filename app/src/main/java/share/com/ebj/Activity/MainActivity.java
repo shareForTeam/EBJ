@@ -196,32 +196,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
     }
 
-//
-//        String url = "http://172.18.4.18:8080/EBJ_Project/db.do";
-//        RequestParams params = new RequestParams();
-//        params.addQueryStringParameter("type", "android");
-//        HttpUtils http = new HttpUtils();
-//        http.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
-//            @Override
-//            public void onSuccess(ResponseInfo<String> responseInfo) {
-//                if(responseInfo.statusCode == 200){
-//
-//                }
-//                Log.e("result-----", responseInfo.result);
-//            }
-//
-//            @Override
-//            public void onFailure(HttpException error, String msg) {
-//
-//            }
-//
-//            @Override
-//            public void onLoading(long total, long current, boolean isUploading) {
-//                super.onLoading(total, current, isUploading);
-//            }
-//
-//        });
-//    }
 
 
 }
