@@ -16,7 +16,8 @@
             android:layout_height="222dp"
             android:background="@mipmap/background_03">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fragment_setting_touxiang"
                 android:layout_width="115dp"
                 android:layout_height="115dp"
                 android:layout_centerHorizontal="true"
@@ -222,6 +223,7 @@
             android:background="#d8d8d8" />
 
         <RelativeLayout
+            android:id="@+id/fragment_setting_account_setting"
             android:layout_width="match_parent"
             android:layout_height="50dp">
 

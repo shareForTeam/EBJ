@@ -63,6 +63,7 @@ public class SortActivity extends AppCompatActivity {
                         sort_viewPager.setCurrentItem(0);
                         break;
                     case R.id.sort_rb3:
+                        // TODO: 2016/9/13 判断是否登录
                         sort_viewPager.setCurrentItem(1);
                         break;
                     case R.id.sort_rb4:

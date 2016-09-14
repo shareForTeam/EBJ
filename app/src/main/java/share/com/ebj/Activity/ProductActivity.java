@@ -136,7 +136,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
                 /**设置价格*/
                 tv_prize.setText(goods_price);
-                // TODO: 2016/9/11 价格前面加上RMB符号
+
 
                 /**设置名字*/
                 tv_name.setText(goods_name);
@@ -234,9 +234,8 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
                 loginSP_user_id = loginSP.getInt("user_id", -1);
                 if (loginSP_user_id != -1) {
-                    // TODO: 2016/9/11 把iv_shopCar --> drawable
                     if (iv_shopCar.isSelected()) {
-                        // TODO: 2016/9/11 删除收藏 ：删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据
+
                         /**删除UserSingleton中对应的goods_id，删除本地数据库user表的相应goods_id，删除服务器上数据*/
                         UserSingleton userSingleton = UserSingleton.getInstance();
                         String user_goods_id = userSingleton.getGoods_id();

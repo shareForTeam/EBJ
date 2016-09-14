@@ -1,14 +1,27 @@
 package share.com.ebj.Activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import share.com.ebj.R;
+import share.com.ebj.SingleUser.UserSingleton;
 
 /**
  * Created by Administrator on 2016/9/5.
@@ -20,6 +33,8 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
     private ImageView person_setting_back;
     private LinearLayout nicheng_button,sex_button,gexingqianming_button,changebg_button,erweima_button,change_passward_button;
     private CircleImageView circleImageView;
+    private final int REQUEST_CODE = 0;
+    private final int RESULT_CODE = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +42,26 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
         init();
         click();
 
+
+
+
+    }
+    /** 根据登录信息设置相应控件*/
+    public void isLogin(){
+        SharedPreferences login_SP = getSharedPreferences("user_id", MODE_PRIVATE);
+        int user_id = login_SP.getInt("user_id", -1);
+        if(user_id != -1){
+            UserSingleton userSingleton = UserSingleton.getInstance();
+            String icon = userSingleton.getIcon();
+            String self_sign = userSingleton.getSelf_sign();
+            String name = userSingleton.getName();
+
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(icon,circleImageView);
+
+        }else {
+
+        }
     }
 
     /***
@@ -95,10 +130,41 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
                 break;
             //头像的设置
             case R.id.circleImageView:
-                Toast.makeText(getApplicationContext(),"头像的设置",Toast.LENGTH_SHORT).show();
+                startSystemImage();
                 break;
 
         }
 
     }
+
+    /**调用系统相册*/
+    public void  startSystemImage(){
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumns = {MediaStore.Images.Media.DATA};
+            Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePathColumns[0]);
+            String imagePath = c.getString(columnIndex);
+//            currtView.setTag(""+imagePath);
+            /**设置选中的图片*/
+//            showImage(imagePath);
+            // TODO: 2016/9/13 向服务器上传图片，服务器返回服务器图片地址，更新UserSingleton、本地数据库信息
+            Bitmap touxiang = BitmapFactory.decodeFile(imagePath);
+            circleImageView.setImageBitmap(touxiang);
+            Intent intent_Result = new Intent();
+            intent_Result.putExtra("touxiang_path",imagePath);
+            setResult(RESULT_CODE,intent_Result);
+            c.close();
+        }
+    }
+
 }

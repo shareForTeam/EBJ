@@ -46,18 +46,18 @@ public class UserSingleton {
 //        return new_goods_id;
 //    }
 
-    public List<String> getGoods_id_List() {
-        String[] split = this.goods_id.split(";");
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (String string : split) {
-            if (string.equals("null")|| string.equals("")) {
-                continue;
-            } else {
-                arrayList.add(string);
-            }
-        }
-        return arrayList;
-    }
+//    public List<String> getGoods_id_List() {
+//        String[] split = this.goods_id.split(";");
+//        ArrayList<String> arrayList = new ArrayList<>();
+//        for (String string : split) {
+//            if (string.equals("null")|| string.equals("")) {
+//                continue;
+//            } else {
+//                arrayList.add(string);
+//            }
+//        }
+//        return arrayList;
+//    }
 
 
 //    public String deleteGoods_id(String delete_goods_id) {
