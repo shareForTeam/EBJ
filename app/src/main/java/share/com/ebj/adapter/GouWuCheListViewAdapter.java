@@ -85,7 +85,7 @@ public class GouWuCheListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
-//TODO:问题LIstView滑动更新组件会重用Item,让数据变得混乱，需要一个javaBean来存储数据
+        // TODO: 2016/9/15 checkbox,edittext 错位问题
         if (view == null) {
             viewHolder = new ViewHolder();
             // 获取组件布局
@@ -114,29 +114,6 @@ public class GouWuCheListViewAdapter extends BaseAdapter {
         /**获取商品详情*/
         getGoodsInfo(Integer.parseInt(this.goods_list.get(position)),viewHolder);
 
-
-//        /***
-//         * 点击事件
-//         */
-//        //购物车加号的点击事件
-//        final ViewHolder viewHolder2 = viewHolder;//final一下，转换为全局变脸
-//        viewHolder.imageButton_jia.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //需要把我们操作的变量传入进来。
-//                int count = Integer.parseInt(viewHolder2.et_num.getText().toString());
-//                viewHolder2.et_num.setText((++count) + "");
-//            }
-//        });
-//        //购物车减号的点击事件
-//        viewHolder.imageButton_jian.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int count = Integer.parseInt(viewHolder2.et_num.getText().toString());
-//                int i = unAddNum(count);
-//                viewHolder2.et_num.setText(i + "");
-//            }
-//        });
 
         return view;
     }
