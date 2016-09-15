@@ -84,6 +84,24 @@ public class DBOperation {
         }
     }
 
-    /**点击取消收藏后，删除数据库中goods_id相应的字符串（修改数据库中goods_id内容）*/
+    /**更新本地数据库中icon*/
+    public boolean updateIcon(int user_id,String iconURL){
+
+        try {
+            DbManager dbManager = x.getDb(InitActivity.daoConfig);
+            WhereBuilder whereBuilder = WhereBuilder.b();
+            whereBuilder.and("user_id","=",user_id);
+            KeyValue keyValue = new KeyValue("icon",iconURL);
+            int update = dbManager.update(User_Info.class, whereBuilder, keyValue);
+            if(update == 1){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

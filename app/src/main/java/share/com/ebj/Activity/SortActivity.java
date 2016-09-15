@@ -19,6 +19,7 @@ import share.com.ebj.leadFragment.MySelfFragment;
 import share.com.ebj.leadFragment.SortFragment;
 
 public class SortActivity extends AppCompatActivity {
+    // TODO: 2016/9/14 进行图片二次采样
     private String TAG = "crazyK";
     private List<Fragment> fragments;
     private MyViewPager sort_viewPager;
@@ -42,8 +43,8 @@ public class SortActivity extends AppCompatActivity {
         sort_viewPager.setOffscreenPageLimit(4);
         /**通过main的个人中心进入*/
         Intent intentFromMain = getIntent();
-        int user_id = intentFromMain.getIntExtra("user_id", -1);
-        if(user_id != -1){
+        int isMine = intentFromMain.getIntExtra("isMine", -1);
+        if(isMine == -2){
             sort_viewPager.setCurrentItem(2);
             sort_group.check(R.id.sort_rb4);
         }

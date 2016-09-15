@@ -55,7 +55,6 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             /**登录*/
             case R.id.regist_regist:
-                // TODO: 2016/9/12 1、将账号密码到服务器，2、服务器查询数据库中所有user_name,如果相同返回“用户名已存在”，若不存在 -->写入服务器数据库，将user_id账号密码返回，安卓中写入数据库，更新UserSington
                 String name_input = et_username.getText().toString().trim();
                 String pwd_input = et_pwd.getText().toString().trim();
 

@@ -114,7 +114,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         x.http().request(HttpMethod.POST, requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i(TAG, "onSuccess: " + result);
+//                Log.i(TAG, "onSuccess: " + result);
                 iconStr_List = new ArrayList<String>();
                 description_List = new ArrayList<String>();
 

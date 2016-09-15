@@ -18,10 +18,19 @@ public class StrManager {
     public List<String> getIconList(String jsonStr) {
         String[] splitIconStr = jsonStr.split(";");
         ArrayList<String> iconList = new ArrayList<>();
-        for (int i = 0; i < splitIconStr.length; i++) {
-            iconList.add(splitIconStr[i]);
-            Log.i(TAG, "getIconList: " + splitIconStr[i] + "\t");
+
+        for (String string : splitIconStr) {
+            if (string.equals("null")|| string.equals("")) {
+                continue;
+            } else {
+                iconList.add(string);
+            }
         }
+
+//        for (int i = 0; i < splitIconStr.length; i++) {
+//            iconList.add(splitIconStr[i]);
+////            Log.i(TAG, "getIconList: " + splitIconStr[i] + "\t");
+//        }
         return iconList;
 
     }

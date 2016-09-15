@@ -63,19 +63,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences login_SP = getSharedPreferences("user_id", MODE_PRIVATE);
-                int user_id = login_SP.getInt("user_id", -1);
-                if(user_id == -1){
-                    Intent intent_MainToLogin = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(intent_MainToLogin);
-                }else {
+                /**逻辑：都进入sort、MyselfFragment，在MyselfFragment中判断是否登录*/
                     Intent intent_MainToSort = new Intent(MainActivity.this,SortActivity.class);
-
-                    intent_MainToSort.putExtra("user_id",user_id);
+                    intent_MainToSort.putExtra("isMine",-2);
                     startActivity(intent_MainToSort);
-
                     resideMenu.closeMenu();
-                }
 
             }
         });
