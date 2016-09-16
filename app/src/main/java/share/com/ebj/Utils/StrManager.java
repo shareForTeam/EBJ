@@ -35,7 +35,7 @@ public class StrManager {
 
     }
 
-    public String deleteGoods_id(String user_goods_id, String delete_goods_id) {
+    public  String deleteGoods_id(String user_goods_id, String delete_goods_id) {
         /**
          * 注意：str.subString(start,end),为前闭后开区间
          * */

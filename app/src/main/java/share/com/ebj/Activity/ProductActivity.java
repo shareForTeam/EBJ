@@ -227,6 +227,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             /**购物车*/
+            // TODO: 2016/9/16 用户体验不行，应先将图片变色，再进行服务器请求等操作，中途若发生异常，再改回去
             case R.id.product_ll_shopcar:
                 imageView_car.setImageResource(R.drawable.shopcar);
 
@@ -342,7 +343,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onSuccess(String result) {
                 if (result.equals("购物车更新成功")) {
-                    /**更新删除本地数据库*/
+                    /**更新添加本地数据库*/
                     DBOperation dbOperation = new DBOperation();
                     boolean isSuccess = dbOperation.updateGoods_id_To_ShopCar(user_id, new_goods_id);
                     if (isSuccess) {
