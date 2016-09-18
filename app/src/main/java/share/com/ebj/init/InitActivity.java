@@ -3,6 +3,8 @@ package share.com.ebj.init;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ import share.com.ebj.SingleUser.UserSingleton;
 public class InitActivity extends Application {
     private String TAG = "crazyK";
     private ImageLoaderConfiguration config;
+    public static DisplayImageOptions maindisplayoption,userimgdisplayoption;
     public static DbManager.DaoConfig daoConfig;
     @Override
     public void onCreate() {
@@ -71,6 +74,23 @@ public class InitActivity extends Application {
     /**初始化imageloader*/
     public void initImageLoader(Context context) {
         //File cacheDir = StorageUtils.getCacheDirectory(context);
+
+        /**一般业务逻辑使用的图片加载option*/
+        maindisplayoption = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)//开启内存缓存
+                .cacheOnDisk(true)//开启磁盘缓存
+                .showImageOnLoading(R.mipmap.loading)//加载过程中显示的图片
+                .showImageOnFail(R.mipmap.loadfail)//加载失败显示的图片
+                .build();
+
+        /**个人中心所使用的option*/
+        userimgdisplayoption = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)//开启内存缓存
+                .cacheOnDisk(true)//开启磁盘缓存
+                .showImageOnLoading(R.mipmap.loading)//加载过程中显示的图片
+                .showImageOnFail(new ColorDrawable(Color.TRANSPARENT))//加载失败显示的图片
+                .build();
+
         config = new ImageLoaderConfiguration.Builder(context)
                 .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
                 .diskCacheExtraOptions(480, 800, null)
@@ -86,12 +106,7 @@ public class InitActivity extends Application {
                 .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
                 .imageDownloader(new BaseImageDownloader(context)) // default
                 .imageDecoder(new BaseImageDecoder(true)) // default
-                .defaultDisplayImageOptions(new DisplayImageOptions.Builder()
-                        .cacheInMemory(true)//开启内存缓存
-                        .cacheOnDisk(true)//开启磁盘缓存
-                        .showImageOnLoading(R.mipmap.ic_launcher)//加载过程中显示的图片
-                        .showImageOnFail(R.mipmap.ic_launcher)//加载失败显示的图片
-                        .build()) // default
+                .defaultDisplayImageOptions(maindisplayoption) // default
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(config);

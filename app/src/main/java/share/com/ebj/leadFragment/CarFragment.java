@@ -1,6 +1,7 @@
 package share.com.ebj.leadFragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import share.com.ebj.Activity.PayClickActivity;
 import share.com.ebj.JavaBean.GoodsBean_For_Car_ListView;
 import share.com.ebj.R;
 import share.com.ebj.SingleUser.UserSingleton;
@@ -83,6 +85,7 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
     }
 
     public void initListener(){
+        gouwucge_pay_button.setOnClickListener(this);
         gouwuche_back_img.setOnClickListener(this);
         iv_delete.setOnClickListener(this);
         check_all_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -91,7 +94,10 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
                 for(int i = 0 ; i<listGoods.size() ; i++){
                     listGoods.get(i).setIsCheck(b);
                 }
+
                 gouWuCheListViewAdapter.setlistGoodsBean(listGoods);
+                int totalPrize = getTotalPrize();
+                tv_total_prize.setText(totalPrize+"");
             }
         });
     }
@@ -191,6 +197,8 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
                 break;
             /**支付*/
             case R.id.gouwucge_pay_button:
+                Intent intent_CarToPay = new Intent(getActivity(), PayClickActivity.class);
+                startActivity(intent_CarToPay);
                 break;
             /**删除*/
             case R.id.car_iv_delete:
@@ -230,6 +238,9 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
                 this.gouWuCheListViewAdapter.setlistGoodsBean(this.listGoods);
 
                 break;
+
+
+
         }
     }
 

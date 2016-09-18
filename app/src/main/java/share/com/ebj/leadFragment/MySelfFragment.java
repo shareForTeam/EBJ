@@ -25,6 +25,7 @@ import share.com.ebj.Activity.LoginActivity;
 import share.com.ebj.Activity.PersonSettingActivity;
 import share.com.ebj.R;
 import share.com.ebj.SingleUser.UserSingleton;
+import share.com.ebj.init.InitActivity;
 
 /**
  * Created by Administrator on 2016/9/8.
@@ -83,7 +84,8 @@ public class MySelfFragment extends Fragment implements View.OnClickListener {
 
             if(icon != null){
                 ImageLoader imageLoader = ImageLoader.getInstance();
-                imageLoader.displayImage(icon,civ_touxiang);
+//                imageLoader.displayImage(icon,civ_touxiang);
+                imageLoader.displayImage(icon,civ_touxiang, InitActivity.userimgdisplayoption);
                 if(civ_touxiang.getVisibility() == View.INVISIBLE){
                     civ_touxiang.setVisibility(View.VISIBLE);
                 }

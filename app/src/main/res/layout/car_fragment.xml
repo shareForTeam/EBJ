@@ -89,9 +89,10 @@
 
         <!--CheckBox布局-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:gravity="center">
             <CheckBox
                 android:id="@+id/check_button"
@@ -104,9 +105,8 @@
 
         <!--全选布局-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="80"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
@@ -117,24 +117,32 @@
 
         </LinearLayout>
         <!--中间空白-->
+
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="420">
+            android:layout_weight="1"
+            android:paddingRight="12dp"
+            android:gravity="right"
+            >
+        <RelativeLayout
+            android:id="@+id/hejirel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="合计:"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
         <!--全部价格布局-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="140"
+            android:layout_toRightOf="@+id/hejirel"
+            android:layout_marginLeft="12dp"
             android:gravity="center">
 
             <ImageView
@@ -146,12 +154,18 @@
                 android:layout_height="wrap_content"
                 android:textStyle="italic|bold"
                 android:text="0"
+                android:inputType="number"
+                android:maxLines="1"
                 android:layout_marginLeft="4dp"
                 android:textColor="@color/sort_goods_prize"
                 android:textSize="18sp"
                 android:id="@+id/total_prize" />
 
         </LinearLayout>
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 

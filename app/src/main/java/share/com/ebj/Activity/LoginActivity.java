@@ -25,6 +25,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import share.com.ebj.JavaBean.UserLogin;
 import share.com.ebj.R;
@@ -205,9 +206,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }else if(TextUtils.equals(name,name_serv) && TextUtils.equals(pwd,pwd_serv)){/**登录成功*/
                             /**更新UserSingleton*/
                             String goods_id_serv = user.getGoods_id();
-                            String icon_serv = user.getIcon();
                             String self_sign_serv = user.getSelf_sign();
                             int user_id_serv = user.getUser_id();
+                            String icon_serv = "http://172.18.4.18:8080/EBJ_Project/icon.do?type=android&query=download&user_id="+ user_id_serv +"&UUID="+ UUID.randomUUID();
                             UserSingleton userSingleton = UserSingleton.getInstance();
                             userSingleton.updateUser(user_id_serv,name_serv,pwd_serv,self_sign_serv,icon_serv,goods_id_serv);
                             /**将信息写入本地数据库*/
