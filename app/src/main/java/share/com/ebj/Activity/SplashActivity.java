@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -24,6 +25,9 @@ public class SplashActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.img);
         sharedPreferences = getSharedPreferences("SPFILE", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         AlphaAnimation animation = new AlphaAnimation(0.1f, 1.0f);
         animation.setDuration(1000);
         imageView.startAnimation(animation);

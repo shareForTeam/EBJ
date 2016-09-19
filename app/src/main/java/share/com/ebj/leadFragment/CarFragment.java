@@ -129,7 +129,7 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
 
     /**获取商品详情*/
     public void getGoodsInfo(final int goods_id , final ArrayList<GoodsBean_For_Car_ListView> listGoods){
-        RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_detail.do?");
+        RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_detail.do?");
         requestParams.addParameter("type", "android");
         requestParams.addParameter("query", "detail");
         requestParams.addParameter("goods_id", goods_id);
@@ -251,7 +251,7 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
     public void updateUserGoods_iv_selected(final int user_id, final String new_goods_id, final GoodsBean_For_Car_ListView goodsBean_for_car_listView) {
         Log.i(TAG, "new_goods_id2: "+new_goods_id);
 
-        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        RequestParams params = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/user_goods.do");
         params.addParameter("type", "android");
         params.addParameter("query", "user_goods");
         params.addParameter("user_id", user_id);

@@ -222,7 +222,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void getUserOnServ(final String name, final String pwd){
         /**本地数据库不存在，查询服务器*/
-        String url = "http://172.18.4.18:8080/EBJ_Project/user_info.do";
+        String url = "http://wop0807.vicp.cc/EBJ_Project/user_info.do";
         RequestParams params = new RequestParams(url);
         params.addParameter("type","android");
         params.addParameter("query","user");
@@ -250,7 +250,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String goods_id_serv = user.getGoods_id();
                             String self_sign_serv = user.getSelf_sign();
                             int user_id_serv = user.getUser_id();
-                            String icon_serv = "http://172.18.4.18:8080/EBJ_Project/icon.do?type=android&query=download&user_id="+ user_id_serv +"&UUID="+ UUID.randomUUID();
+                            String icon_serv = "http://wop0807.vicp.cc/EBJ_Project/icon.do?type=android&query=download&user_id="+ user_id_serv +"&UUID="+ UUID.randomUUID();
                             UserSingleton userSingleton = UserSingleton.getInstance();
                             userSingleton.updateUser(user_id_serv,name_serv,pwd_serv,self_sign_serv,icon_serv,goods_id_serv);
                             /**将信息写入本地数据库*/

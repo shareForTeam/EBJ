@@ -58,7 +58,7 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
                 String name_input = et_username.getText().toString().trim();
                 String pwd_input = et_pwd.getText().toString().trim();
 
-                RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/regist.do");
+                RequestParams params = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/regist.do");
                 params.addParameter("type","android");
                 params.addParameter("query","regist");
                 params.addParameter("name",name_input);
