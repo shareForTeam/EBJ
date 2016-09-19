@@ -71,7 +71,7 @@ public class Sort_Fragment_clothes extends Fragment implements RecycleView_Adapt
             return;
         }
         if(product_id == 1){
-            RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_sort.do");
+            RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_sort.do");
             requestParams.addParameter("type", "android");
             requestParams.addParameter("query", "sort");
             requestParams.addParameter("product_id", product_id);
