@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,11 +15,16 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.xutils.DbManager;
 import org.xutils.common.Callback;
+import org.xutils.db.sqlite.SqlInfo;
+import org.xutils.db.table.DbModel;
+import org.xutils.ex.DbException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -31,7 +37,9 @@ import share.com.ebj.JavaBean.UserLogin;
 import share.com.ebj.R;
 import share.com.ebj.SingleUser.UserSingleton;
 import share.com.ebj.Utils.DBOperation;
+import share.com.ebj.init.InitActivity;
 import share.com.ebj.jsonStr.UserJson;
+import share.com.ebj.thirdlogin.ThirdLogin;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private String TAG = "crazyK";
@@ -39,9 +47,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private AutoCompleteTextView autoCompleteTextView;
     private List<UserLogin> userLoginList;
     //登录
-    private ImageView iv_login,iv_regist;
+    private ImageView iv_login,iv_regist,login_pwd_show;
     private EditText et_pwd;
-
+    private LinearLayout qq_login;
+    private boolean bool=false;
     private final int RESULT_CODE = 0;
 
     @Override
@@ -59,11 +68,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_pwd = (EditText) findViewById(R.id.login_pwd);
         iv_login = (ImageView) findViewById(R.id.login_login);
         iv_regist = (ImageView) findViewById(R.id.login_regist);
+        login_pwd_show= (ImageView) findViewById(R.id.login_pwd_show);
+        qq_login= (LinearLayout) findViewById(R.id.qq_login);
     }
 
     public void initListener(){
         iv_login.setOnClickListener(this);
         iv_regist.setOnClickListener(this);
+        login_pwd_show.setOnClickListener(this);
+        qq_login.setOnClickListener(this);
 
         /**addTextChangedListener*/
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -76,9 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 DBOperation dbOperation = new DBOperation();
                 userLoginList = dbOperation.selectIDPwd();//返回来的用户登录信息集合
-//                Log.i(TAG, "act开始变化");
                 if(userLoginList.size() != 0){
-//                    Log.i(TAG, "返回的userLoginList长度不为0 ：" +userLoginList.size());
                     ArrayList<String> nameList = new ArrayList<>();
                     for(int i = 0 ; i < userLoginList.size() ; i++){
                         String name = userLoginList.get(i).getName();
@@ -86,7 +97,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(LoginActivity.this,android.R.layout.simple_list_item_1,nameList);
                     autoCompleteTextView.setAdapter(arrayAdapter);
-//                    Log.i(TAG, "设置适配器成功 ");
                 }
             }
 
@@ -142,12 +152,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             int conter_user_id = user_idList.get(indexOf);
                             if(TextUtils.equals(pwd,conter_pwd)){
                                 /**且账号密码匹配*/
-//                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                                 SharedPreferences loginSP = getSharedPreferences("user_id", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = loginSP.edit();
                                 editor.putInt("user_id",conter_user_id);
                                 editor.apply();
+                                DbManager dbManager = x.getDb(InitActivity.daoConfig);
+                                try {
+                                    List<DbModel> dbModelAll = dbManager.findDbModelAll(new SqlInfo("select user_id,name,pwd,self_sign,icon,goods_id from user where user_id = '"+conter_user_id+"'"));
+//                                    Log.i(TAG, "InitActivity --> onCreate() -->执行完findDbModelAll");
+                                    int user_id = dbModelAll.get(0).getInt("user_id");
+                                    String name_Single = dbModelAll.get(0).getString("name");
+                                    String pwd_Single = dbModelAll.get(0).getString("pwd");
+                                    String self_sign_Single = dbModelAll.get(0).getString("self_sign");
+                                    String icon_Single = dbModelAll.get(0).getString("icon");
+                                    String goods_id_Single = dbModelAll.get(0).getString("goods_id");
+                                    UserSingleton userSingleton = UserSingleton.getInstance();
+                                    userSingleton.updateUser(conter_user_id,name_Single,pwd_Single,self_sign_Single,icon_Single,goods_id_Single);
+                                } catch (DbException e) {
+                                    e.printStackTrace();
+                                }
                                 this.finish();
+
                             }
                         }else {
                             /**本地数据库不存在，查询服务器
@@ -174,6 +199,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_regist:
                 Intent intent_LoginToRegist = new Intent(this,RegistActivity.class);
                 startActivity(intent_LoginToRegist);
+                break;
+            case R.id.login_pwd_show:
+                if (bool==false){
+                    et_pwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    //隐藏密码
+                    login_pwd_show.setImageResource(R.mipmap.yincangmima);
+                    bool=true;
+                }else if(bool==true){
+                    et_pwd.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    //显示密码
+                    login_pwd_show.setImageResource(R.mipmap.showmima);
+                    bool=false;
+                }
+                break;
+            case R.id.qq_login:
+                ThirdLogin thirdLogin=new ThirdLogin();
+                thirdLogin.t_login(this,"QQ");
                 break;
         }
     }

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private ViewPager viewPager;
     private ImageView[] imageView;
     private RadioGroup radioGroup;
-    private int icon[] = {R.mipmap.index_lunbo, R.mipmap.index_lunbo, R.mipmap.index_lunbo, R.mipmap.index_lunbo};
+    private int icon[] = {R.mipmap.index_lunbo, R.mipmap.index_lunbo2, R.mipmap.index_lunbo3, R.mipmap.index_lunbo4};
     /**四大分类*/
     private ImageView iv_sort_1,iv_sort_2,iv_sort_3,iv_sort_4;
 
@@ -74,7 +74,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "进入商城", Toast.LENGTH_LONG).show();
+                Intent intent =new Intent(MainActivity.this,SortActivity.class);
+                startActivity(intent);
+                resideMenu.closeMenu();
             }
         });
 

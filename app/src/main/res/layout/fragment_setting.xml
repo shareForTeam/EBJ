@@ -23,7 +23,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:visibility="invisible"
-                android:src="@mipmap/head_03" />
+                android:src="@mipmap/login_head" />
 
             <TextView
                 android:id="@+id/fragment_setting_name"

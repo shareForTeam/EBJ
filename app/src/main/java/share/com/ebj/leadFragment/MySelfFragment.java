@@ -94,10 +94,13 @@ public class MySelfFragment extends Fragment implements View.OnClickListener {
                 tv_self_sign.setText(self_sign);
             }
         }else {
-            /**为登录状态*/
+            /**未登录状态*/
             if(civ_touxiang.getVisibility() == View.VISIBLE){
                 civ_touxiang.setVisibility(View.INVISIBLE);
             }
+            tv_name.setText("登录/注册");
+            tv_self_sign.setText(null);
+            Log.i(TAG, "设置空 ");
 
         }
     }

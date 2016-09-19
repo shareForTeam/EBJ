@@ -121,7 +121,7 @@
                     android:layout_weight="390"
                     android:background="@null"
                     android:hint="请输入你的密码"
-                    android:inputType="textPassword"
+                    android:inputType="textVisiblePassword"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/login_white"
@@ -136,9 +136,10 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/login_show_pwd" />
+                        android:id="@+id/login_pwd_show"
+                        android:layout_width="32dp"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/showmima" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -146,7 +147,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
     </LinearLayout>
 
     <LinearLayout
@@ -156,7 +157,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="164"></LinearLayout>
+            android:layout_weight="164"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -192,7 +193,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
     </LinearLayout>
 
     <LinearLayout
@@ -202,7 +203,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -223,7 +224,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
 
     </LinearLayout>
 
@@ -241,7 +242,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="9dp"></LinearLayout>
+        android:layout_height="9dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -250,7 +251,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -258,6 +259,7 @@
             android:layout_weight="500">
 
             <LinearLayout
+                android:id="@+id/qq_login"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -297,12 +299,12 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="110"></LinearLayout>
+            android:layout_weight="110"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"></LinearLayout>
+        android:layout_height="50dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

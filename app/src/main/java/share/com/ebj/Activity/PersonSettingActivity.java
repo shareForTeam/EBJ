@@ -1,6 +1,8 @@
 package share.com.ebj.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -42,9 +45,11 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
     private ImageView person_setting_back;
     private LinearLayout nicheng_button, sex_button, gexingqianming_button, changebg_button, erweima_button, change_passward_button;
     private CircleImageView circleImageView;
+    private RelativeLayout logout;
     private final int REQUEST_CODE = 0;
     private final int RESULT_CODE = 0;
     private int user_id;
+
 
 
     @Override
@@ -94,6 +99,7 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
         erweima_button = (LinearLayout) findViewById(R.id.erweima_button);//二维码设置
         change_passward_button = (LinearLayout) findViewById(R.id.change_passward_button);//更改密码设置
         circleImageView = (CircleImageView) findViewById(R.id.circleImageView);
+        logout= (RelativeLayout) findViewById(R.id.logout);
     }
 
     /***
@@ -108,6 +114,7 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
         erweima_button.setOnClickListener(this);
         change_passward_button.setOnClickListener(this);
         circleImageView.setOnClickListener(this);
+        logout.setOnClickListener(this);
     }
 
 
@@ -149,10 +156,45 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
             case R.id.circleImageView:
                 startSystemImage();
                 break;
+            case R.id.logout:
+//                deleteFilesByDirectory(new File("/data/data/"
+//                        +getPackageName() + "/databases"));
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(null)
+                        .setMessage("您确定要退出登录吗？")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                UserSingleton userSingleton = UserSingleton.getInstance();
+                                userSingleton.updateUser_clear(null,null,null,null,null);
+                                SharedPreferences login_SP = getSharedPreferences("user_id", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = login_SP.edit();
+                                editor.putInt("user_id",-1);
+                                editor.apply();
+
+                                Intent intent_out=new Intent(PersonSettingActivity.this,LoginActivity.class);
+
+                                startActivity(intent_out);
+                                finish();
+                          }
+                        })
+                        .setNegativeButton("否", null)
+                        .show();
+
+                    break;
+
 
         }
 
     }
+    //TODO 删除文件夹
+//    private static void deleteFilesByDirectory(File directory) {
+//        if (directory != null && directory.exists() && directory.isDirectory()) {
+//            for (File item : directory.listFiles()) {
+//                item.delete();
+//            }
+//        }
+//    }
 
     /**
      * 调用系统相册,向服务器上传图片，服务器返回服务器图片地址，更新UserSingleton、本地数据库信息
@@ -219,13 +261,12 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
 
                 }
             });
-//            Bitmap touxiang = BitmapFactory.decodeFile(imagePath);
-//            circleImageView.setImageBitmap(touxiang);
-//            Intent intent_Result = new Intent();
-//            intent_Result.putExtra("touxiang_path",imagePath);
-//            setResult(RESULT_CODE,intent_Result);
+
+
             c.close();
         }
+
+
     }
 
 }
