@@ -178,7 +178,7 @@ public class PersonSettingActivity extends AppCompatActivity implements View.OnC
 
 //            showImage(imagePath);
 
-            String url = "http://172.18.4.18:8080/EBJ_Project/icon.do?type=android&query=upload&user_id="+this.user_id;
+            String url = "http://wop0807.vicp.cc/EBJ_Project/icon.do?type=android&query=upload&user_id="+this.user_id;
             RequestParams params = new RequestParams(url);
             params.addBodyParameter("file",new File(imagePath));
             params.setMultipart(true);
