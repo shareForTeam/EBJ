@@ -110,17 +110,20 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
             /**已登录*/
             UserSingleton userSingleton = UserSingleton.getInstance();
             String goods_ids = userSingleton.getGoods_id();
-            StrManager strManager = new StrManager();
-            List<String> goods_list = strManager.getIconList(goods_ids);
+            if(goods_ids != null){
+                StrManager strManager = new StrManager();
+                List<String> goods_list = strManager.getIconList(goods_ids);
 
-            /**访问服务器获得ProductJson(商品信息),并对其进一步封装，添加isCheck、et_count、position属性*/
+                /**访问服务器获得ProductJson(商品信息),并对其进一步封装，添加isCheck、et_count、position属性*/
 
-            listGoods = new ArrayList<>();
-            for(int i = 0 ; i <goods_list.size() ; i++){
-                String goods_id = goods_list.get(i);
-                getGoodsInfo(Integer.parseInt(goods_id),listGoods);
+                listGoods = new ArrayList<>();
+                for(int i = 0 ; i <goods_list.size() ; i++){
+                    String goods_id = goods_list.get(i);
+                    getGoodsInfo(Integer.parseInt(goods_id),listGoods);
 
+                }
             }
+
 
         }else {
             /**不应该出现没有登录就进入这个页面的逻辑，如果发生打印错误日志*/
@@ -129,7 +132,7 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
 
     /**获取商品详情*/
     public void getGoodsInfo(final int goods_id , final ArrayList<GoodsBean_For_Car_ListView> listGoods){
-        RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_detail.do?");
+        RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_detail.do?");
         requestParams.addParameter("type", "android");
         requestParams.addParameter("query", "detail");
         requestParams.addParameter("goods_id", goods_id);
@@ -251,7 +254,7 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
     public void updateUserGoods_iv_selected(final int user_id, final String new_goods_id, final GoodsBean_For_Car_ListView goodsBean_for_car_listView) {
         Log.i(TAG, "new_goods_id2: "+new_goods_id);
 
-        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        RequestParams params = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/user_goods.do");
         params.addParameter("type", "android");
         params.addParameter("query", "user_goods");
         params.addParameter("user_id", user_id);

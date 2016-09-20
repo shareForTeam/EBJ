@@ -107,7 +107,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
 
-        RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_detail.do?");
+        RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_detail.do?");
         requestParams.addParameter("type", "android");
         requestParams.addParameter("query", "detail");
         requestParams.addParameter("goods_id", goods_id);
@@ -289,7 +289,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
      */
     public void updateUserGoods_iv_selected(final int user_id, final String new_goods_id) {
 
-        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        RequestParams params = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/user_goods.do");
         params.addParameter("type", "android");
         params.addParameter("query", "user_goods");
         params.addParameter("user_id", user_id);
@@ -333,7 +333,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void updateUserGoods_iv_unSelected(final int user_id, final String new_goods_id) {
-        RequestParams params = new RequestParams("http://172.18.4.18:8080/EBJ_Project/user_goods.do");
+        RequestParams params = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/user_goods.do");
         params.addParameter("type", "android");
         params.addParameter("query", "user_goods");
         params.addParameter("user_id", user_id);

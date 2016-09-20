@@ -215,7 +215,7 @@ public class GouWuCheListViewAdapter extends BaseAdapter {
 
 //    /**获取商品详情*/
 //    public void getGoodsInfo(int goods_id , final ViewHolder viewHolder ){
-//        RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_detail.do?");
+//        RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_detail.do?");
 //        requestParams.addParameter("type", "android");
 //        requestParams.addParameter("query", "detail");
 //        requestParams.addParameter("goods_id", goods_id);
