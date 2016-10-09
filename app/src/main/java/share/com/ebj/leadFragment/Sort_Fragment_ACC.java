@@ -69,7 +69,7 @@ public class Sort_Fragment_ACC extends Fragment implements RecycleView_Adapter.O
             return;
         }
         if(product_id == 4){
-            RequestParams requestParams = new RequestParams("http://wop0807.vicp.cc/EBJ_Project/goods_sort.do");
+            RequestParams requestParams = new RequestParams("http://172.18.4.18:8080/EBJ_Project/goods_sort.do");
             requestParams.addParameter("type", "android");
             requestParams.addParameter("query", "sort");
             requestParams.addParameter("product_id", product_id);
