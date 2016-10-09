@@ -39,7 +39,6 @@ import share.com.ebj.SingleUser.UserSingleton;
 import share.com.ebj.Utils.DBOperation;
 import share.com.ebj.init.InitActivity;
 import share.com.ebj.jsonStr.UserJson;
-import share.com.ebj.thirdlogin.ThirdLogin;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private String TAG = "crazyK";
@@ -213,10 +212,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     bool=false;
                 }
                 break;
-            case R.id.qq_login:
-                ThirdLogin thirdLogin=new ThirdLogin();
-                thirdLogin.t_login(this,"QQ");
-                break;
+
         }
     }
 

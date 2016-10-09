@@ -110,17 +110,20 @@ public class CarFragment extends Fragment implements View.OnClickListener ,GouWu
             /**已登录*/
             UserSingleton userSingleton = UserSingleton.getInstance();
             String goods_ids = userSingleton.getGoods_id();
-            StrManager strManager = new StrManager();
-            List<String> goods_list = strManager.getIconList(goods_ids);
+            if(goods_ids != null){
+                StrManager strManager = new StrManager();
+                List<String> goods_list = strManager.getIconList(goods_ids);
 
-            /**访问服务器获得ProductJson(商品信息),并对其进一步封装，添加isCheck、et_count、position属性*/
+                /**访问服务器获得ProductJson(商品信息),并对其进一步封装，添加isCheck、et_count、position属性*/
 
-            listGoods = new ArrayList<>();
-            for(int i = 0 ; i <goods_list.size() ; i++){
-                String goods_id = goods_list.get(i);
-                getGoodsInfo(Integer.parseInt(goods_id),listGoods);
+                listGoods = new ArrayList<>();
+                for(int i = 0 ; i <goods_list.size() ; i++){
+                    String goods_id = goods_list.get(i);
+                    getGoodsInfo(Integer.parseInt(goods_id),listGoods);
 
+                }
             }
+
 
         }else {
             /**不应该出现没有登录就进入这个页面的逻辑，如果发生打印错误日志*/

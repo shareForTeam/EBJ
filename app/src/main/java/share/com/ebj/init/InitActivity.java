@@ -119,13 +119,13 @@ public class InitActivity extends Application {
                 .setTableCreateListener(new DbManager.TableCreateListener() {
                     @Override
                     public void onTableCreated(DbManager db, TableEntity<?> table) {
-                        Log.i(TAG, "打开表： "+table.getName());
+//                        Log.i(TAG, "打开表： "+table.getName());
                     }
                 })
                 .setDbOpenListener(new DbManager.DbOpenListener() {
                     @Override
                     public void onDbOpened(DbManager db) {
-                        Log.i(TAG, "打开数据库");
+//                        Log.i(TAG, "打开数据库");
                     }
                 });
     }
